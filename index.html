@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Blaze – Fluxos de Atendimento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      width: 420px;
+      border: 2px solid #e10600;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 { color: #e10600; margin-bottom: 16px; }
+    p { color: #333; line-height: 1.5; text-align: left; }
+    a { color: #e10600; font-weight: bold; text-decoration: none; }
+    button {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      background: #e10600;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #b00500; }
+    .secondary { background: #555; }
+    .secondary:hover { background: #333; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .info { font-size: 14px; margin-top: 15px; }
+    .logo-area { margin-top: 20px; text-align: center; }
+    .logo-area img { width: 100px; opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<div class="box" id="app"></div>
+
+<script>
+const app = document.getElementById("app");
+function tela(html){ app.innerHTML = html; }
+
+/* ================= MENU ================= */
+function menu() {
+  tela(`
+    <h2>Fluxos de Atendimento</h2>
+    <p>Selecione o tipo de atendimento:</p>
+    <button onclick="inicioSaque()">💰 Problemas de Saque</button>
+    <button onclick="inicioJR()">🎯 Jogo Responsável</button>
+    <button onclick="cashback()">🧮 Cálculo de Cashback</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* ================= SAQUE ================= */
+function inicioSaque() {
+  tela(`
+    <h2>Problemas de Saque</h2>
+    <p>O cliente recebeu o saque?</p>
+    <button onclick="saqueRecebido()">Sim</button>
+    <button onclick="tempoSaque()">Não</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function saqueRecebido() {
+  tela(`
+    <h2>Ótimo!</h2>
+    <p>Os saques podem levar de <b>2 até 48 horas</b>. Oriente o cliente a aguardar.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function tempoSaque() {
+  tela(`
+    <h2>Tempo do Saque</h2>
+    <button onclick="statusSaque()">Menos de 48 horas</button>
+    <button onclick="saque48()">Mais de 48 horas</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function statusSaque() {
+  tela(`
+    <h2>Status do Saque</h2>
+    <button onclick="pending()">Pending Review / Waiting Input</button>
+    <button onclick="complete()">Complete</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function pending() {
+  tela(`
+    <h2>Saque em análise</h2>
+    <p>Oriente o cliente a aguardar o prazo padrão.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function complete() {
+  tela(`
+    <h2>Saque concluído</h2>
+    <p>O valor já foi enviado ao banco. Oriente a verificar o extrato.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function saque48() {
+  tela(`
+    <h2>Saque acima de 48 horas</h2>
+    <p>Oriente o cliente a preencher o formulário de problemas de transações.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+/* ================= JOGO RESPONSÁVEL ================= */
+function inicioJR() {
+  tela(`
+    <h2>Jogo Responsável</h2>
+    <p>O cliente mencionou problemas com apostas?</p>
+    <button onclick="menu()">Não</button>
+    <button onclick="classificacaoJR()">Sim</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function classificacaoJR() {
+  tela(`
+    <h2>Classificação de Risco</h2>
+    <button onclick="menu()">🟢 Baixo</button>
+    <button onclick="menu()">🟡 Médio</button>
+    <button onclick="menu()">🟠 Alto</button>
+    <button onclick="menu()">🔴 Crítico</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+/* ================= CASHBACK ================= */
+function cashback() {
+  tela(`
+    <h2>Cálculo de Cashback</h2>
+
+    <p><b>Aposta real</b><input id="aposta" type="number"></p>
+    <p><b>Valor ganho</b><input id="ganho" type="number"></p>
+    <p><b>Recompensas reivindicadas/vendidas</b><input id="recompensas" type="number"></p>
+    <p><b>Bônus convertidos</b><input id="bonus" type="number"></p>
+    <p><b>Reembolso semana anterior</b><input id="reembolsoAnterior" type="number"></p>
+    <p><b>Recompensa de reembolso</b><input id="recompensaReembolso" type="number"></p>
+
+    <p><b>Nível do cliente</b>
+      <select id="nivel">
+        <option value="0.03">🥈 Prata – 3%</option>
+        <option value="0.06">🥇 Ouro – 6%</option>
+        <option value="0.10">💎 Platina – 10%</option>
+        <option value="0.15">💎 Diamante – 15%</option>
+        <option value="0.20">💎 Diamante II – 20%</option>
+        <option value="0.25">💎 Diamante III – 25%</option>
+      </select>
+    </p>
+
+    <button onclick="calcularCashback()">Calcular</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+
+    <div id="resultado" class="info"></div>
+
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function calcularCashback() {
+  const perdas =
+    Number(aposta.value)
+    - Number(ganho.value)
+    - Number(recompensas.value)
+    - Number(bonus.value)
+    - Number(reembolsoAnterior.value)
+    - Number(recompensaReembolso.value);
+
+  const perdasFinal = perdas > 0 ? perdas : 0;
+  const cashback = perdasFinal * Number(nivel.value);
+
+  resultado.innerHTML = `
+    <p>
+      <b>Perdas calculadas:</b> R$ ${perdasFinal.toFixed(2)}<br>
+      <b>Cashback estimado:</b> R$ ${cashback.toFixed(2)}
+    </p>
+    <p style="font-size:12px;">
+      ⚠️ Valor estimado. O cálculo final é feito automaticamente pelo sistema.
+    </p>
+  `;
+}
+
+/* START */
+menu();
+</script>
+
+</body>
+</html>
