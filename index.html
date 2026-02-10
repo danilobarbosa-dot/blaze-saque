@@ -1,46 +1,128 @@
-<!-- ===== CASHBACK ===== -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cálculo de Cashback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      width: 420px;
+      border: 2px solid #e10600;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #e10600;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 6px;
+      background: #e10600;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #b00500;
+    }
+
+    .info {
+      font-size: 14px;
+      margin-top: 15px;
+    }
+
+    .logo-area {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .logo-area img {
+      width: 100px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Cálculo de Cashback</h2>
+
+  <p><b>Ganhos do cliente (R$)</b>
+    <input id="ganhos" type="number" placeholder="Ex: 1000">
+  </p>
+
+  <p><b>Perdas do cliente (R$)</b>
+    <input id="perdas" type="number" placeholder="Ex: 1200">
+  </p>
+
+  <p><b>Nível do cliente</b>
+    <select id="nivel">
+      <option value="0.03">🥈 Prata – 3%</option>
+      <option value="0.06">🥇 Ouro – 6%</option>
+      <option value="0.10">💎 Platina – 10%</option>
+      <option value="0.15">💎 Diamante – 15%</option>
+      <option value="0.20">💎 Diamante II – 20%</option>
+      <option value="0.25">💎 Diamante III – 25%</option>
+    </select>
+  </p>
+
+  <button onclick="calcularCashback()">Calcular</button>
+
+  <div id="resultado" class="info"></div>
+
+  <div class="logo-area">
+    <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+  </div>
+</div>
+
 <script>
-function cashback() {
-  tela(`
-    <h2>Cálculo de Cashback</h2>
-
-    <p><b>Ganhos do cliente (R$)</b>
-      <input id="ganhos" type="number" placeholder="Ex: 1000">
-    </p>
-
-    <p><b>Perdas do cliente (R$)</b>
-      <input id="perdas" type="number" placeholder="Ex: 1200">
-    </p>
-
-    <p><b>Nível do cliente</b>
-      <select id="nivel">
-        <option value="0.03">🥈 Prata – 3%</option>
-        <option value="0.06">🥇 Ouro – 6%</option>
-        <option value="0.10">💎 Platina – 10%</option>
-        <option value="0.15">💎 Diamante – 15%</option>
-        <option value="0.20">💎 Diamante II – 20%</option>
-        <option value="0.25">💎 Diamante III – 25%</option>
-      </select>
-    </p>
-
-    <button onclick="calcularCashback()">Calcular</button>
-    <button class="secondary" onclick="menu()">Voltar ao menu</button>
-
-    <div id="resultado" class="info"></div>
-  `);
-}
-
 function calcularCashback() {
   const ganhos = Number(document.getElementById("ganhos").value);
   const perdas = Number(document.getElementById("perdas").value);
   const percentual = Number(document.getElementById("nivel").value);
+  const resultado = document.getElementById("resultado");
+
+  if (!ganhos && !perdas) {
+    resultado.innerHTML = "<p><b>Preencha os campos corretamente.</b></p>";
+    return;
+  }
 
   const baseCalculo = perdas - ganhos;
 
-  const resultadoDiv = document.getElementById("resultado");
-
   if (baseCalculo <= 0) {
-    resultadoDiv.innerHTML = `
+    resultado.innerHTML = `
       <p><b>Não há perdas elegíveis para cashback.</b></p>
     `;
     return;
@@ -48,7 +130,7 @@ function calcularCashback() {
 
   const cashback = baseCalculo * percentual;
 
-  resultadoDiv.innerHTML = `
+  resultado.innerHTML = `
     <p>
       <b>Base de cálculo:</b> R$ ${baseCalculo.toFixed(2)}<br>
       <b>Percentual aplicado:</b> ${(percentual * 100)}%<br>
@@ -60,3 +142,6 @@ function calcularCashback() {
   `;
 }
 </script>
+
+</body>
+</html>
