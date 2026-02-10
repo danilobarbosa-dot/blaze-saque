@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Cálculo de Cashback</title>
+  <title>Blaze – Fluxos de Atendimento</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,12 +15,14 @@
     }
 
     .box {
-      width: 420px;
+      width: 440px;
       border: 2px solid #e10600;
       border-radius: 10px;
       padding: 24px;
       box-shadow: 0 0 12px rgba(0,0,0,0.1);
       text-align: center;
+      overflow-y: auto;
+      max-height: 95vh;
     }
 
     h2 {
@@ -34,17 +36,23 @@
       text-align: left;
     }
 
-    input, select {
+    a {
+      color: #e10600;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    input {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
+      padding: 8px;
+      margin-top: 4px;
       box-sizing: border-box;
     }
 
     button {
       width: 100%;
       padding: 14px;
-      margin-top: 15px;
+      margin: 10px 0;
       border: none;
       border-radius: 6px;
       background: #e10600;
@@ -54,14 +62,9 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #b00500;
-    }
-
-    .info {
-      font-size: 14px;
-      margin-top: 15px;
-    }
+    button:hover { background: #b00500; }
+    .secondary { background: #555; }
+    .secondary:hover { background: #333; }
 
     .logo-area {
       margin-top: 20px;
@@ -72,75 +75,199 @@
       width: 100px;
       opacity: 0.9;
     }
+
+    pre {
+      background: #f7f7f7;
+      padding: 10px;
+      white-space: pre-wrap;
+      text-align: left;
+      font-size: 13px;
+    }
   </style>
 </head>
 <body>
 
-<div class="box">
-  <h2>Cálculo de Cashback</h2>
-
-  <p><b>Ganhos do cliente (R$)</b>
-    <input id="ganhos" type="number" placeholder="Ex: 1000">
-  </p>
-
-  <p><b>Perdas do cliente (R$)</b>
-    <input id="perdas" type="number" placeholder="Ex: 1200">
-  </p>
-
-  <p><b>Nível do cliente</b>
-    <select id="nivel">
-      <option value="0.03">🥈 Prata – 3%</option>
-      <option value="0.06">🥇 Ouro – 6%</option>
-      <option value="0.10">💎 Platina – 10%</option>
-      <option value="0.15">💎 Diamante – 15%</option>
-      <option value="0.20">💎 Diamante II – 20%</option>
-      <option value="0.25">💎 Diamante III – 25%</option>
-    </select>
-  </p>
-
-  <button onclick="calcularCashback()">Calcular</button>
-
-  <div id="resultado" class="info"></div>
-
-  <div class="logo-area">
-    <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-  </div>
-</div>
+<div class="box" id="app"></div>
 
 <script>
-function calcularCashback() {
-  const ganhos = Number(document.getElementById("ganhos").value);
-  const perdas = Number(document.getElementById("perdas").value);
-  const percentual = Number(document.getElementById("nivel").value);
-  const resultado = document.getElementById("resultado");
+const app = document.getElementById("app");
+function tela(html){ app.innerHTML = html; }
 
-  if (!ganhos && !perdas) {
-    resultado.innerHTML = "<p><b>Preencha os campos corretamente.</b></p>";
-    return;
-  }
+/* ================= MENU ================= */
+function menu() {
+  tela(`
+    <h2>Fluxos de Atendimento</h2>
+    <p>Selecione o tipo de atendimento:</p>
 
-  const baseCalculo = perdas - ganhos;
+    <button onclick="inicioSaque()">💰 Problemas de Saque</button>
+    <button onclick="inicioJR()">🎯 Jogo Responsável</button>
+    <button onclick="cashbackIndividual()">🧮 Cálculo Individual Cashback</button>
 
-  if (baseCalculo <= 0) {
-    resultado.innerHTML = `
-      <p><b>Não há perdas elegíveis para cashback.</b></p>
-    `;
-    return;
-  }
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
 
-  const cashback = baseCalculo * percentual;
+/* ================= SAQUE ================= */
+function inicioSaque() {
+  tela(`
+    <h2>Problemas de Saque</h2>
+    <p>O cliente recebeu o saque?</p>
+    <button onclick="saqueRecebido()">Sim</button>
+    <button onclick="tempoSaque()">Não</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
 
-  resultado.innerHTML = `
+function saqueRecebido() {
+  tela(`
+    <h2>Ótimo!</h2>
+    <p>Os saques podem levar de <b>2 até 48 horas</b>. Oriente o cliente a aguardar.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function tempoSaque() {
+  tela(`
+    <h2>Tempo do Saque</h2>
+    <button onclick="statusSaque()">Menos de 48 horas</button>
+    <button onclick="saque48()">Mais de 48 horas</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function statusSaque() {
+  tela(`
+    <h2>Status do Saque</h2>
+    <button onclick="pending()">Pending Review / Waiting Input</button>
+    <button onclick="complete()">Complete</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function pending() {
+  tela(`
+    <h2>Saque em análise</h2>
+    <p>Oriente o cliente a aguardar o prazo padrão.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function complete() {
+  tela(`
+    <h2>Saque concluído</h2>
+    <p>O valor já foi enviado ao banco. Oriente a verificar o extrato.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function saque48() {
+  tela(`
+    <h2>Saque acima de 48 horas</h2>
+    <p>Oriente o cliente a preencher o formulário de problemas de transações.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+/* ================= JOGO RESPONSÁVEL ================= */
+function inicioJR() {
+  tela(`
+    <h2>Jogo Responsável</h2>
+    <p>O cliente mencionou problemas com apostas?</p>
+    <button onclick="menu()">Não</button>
+    <button onclick="classificacaoJR()">Sim</button>
     <p>
-      <b>Base de cálculo:</b> R$ ${baseCalculo.toFixed(2)}<br>
-      <b>Percentual aplicado:</b> ${(percentual * 100)}%<br>
-      <b>Cashback estimado:</b> R$ ${cashback.toFixed(2)}
+      📄 <a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view" target="_blank">
+      Acessar fluxograma em PDF
+      </a>
     </p>
-    <p style="font-size:12px;">
-      ⚠️ Valor estimado. O cálculo final é realizado automaticamente pelo sistema.
-    </p>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function classificacaoJR() {
+  tela(`
+    <h2>Classificação de Risco</h2>
+    <button onclick="jr('🟢 Risco Baixo')">🟢 Risco Baixo</button>
+    <button onclick="jr('🟡 Risco Médio')">🟡 Risco Médio</button>
+    <button onclick="jr('🟠 Risco Alto')">🟠 Risco Alto</button>
+    <button onclick="jr('🔴 Risco Crítico')">🔴 Risco Crítico</button>
+    <button class="secondary" onclick="menu()">Voltar</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function jr(tipo) {
+  tela(`
+    <h2>${tipo}</h2>
+    <p>Seguir o procedimento conforme o fluxo de Jogo Responsável.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+/* ================= CASHBACK INDIVIDUAL ================= */
+function cashbackIndividual() {
+  tela(`
+    <h2>Cálculo Individual Cashback</h2>
+
+    <p>Apostado em dinheiro real<input id="real_bet" type="number"></p>
+    <p>Ganho em dinheiro real<input id="real_won" type="number"></p>
+    <p>Recompensas recebidas/vendidas<input id="sell_amount" type="number"></p>
+    <p>Bônus convertidos em saldo real<input id="transfer_amount" type="number"></p>
+    <p>Cashback da semana anterior<input id="last_week_cashback" type="number"></p>
+    <p>Saques considerados no cálculo<input id="withdrawals_amount" type="number"></p>
+    <p>Rakeback diário recebido<input id="daily_rakeback_amount" type="number"></p>
+    <p>Recompensa de cashback recebida<input id="cashback_reward_amount" type="number"></p>
+    <p>Recompensa de rakeback recebida<input id="rakeback_reward_amount" type="number"></p>
+    <p>Ganhos de Free Spins<input id="softswiss_free_spins_amount" type="number"></p>
+
+    <button onclick="gerarResumo()">Pronto</button>
+    <button class="secondary" onclick="menu()">Voltar</button>
+
+    <div id="resultado"></div>
+  `);
+}
+
+function gerarResumo() {
+  const dados = `
+É importante que saiba que o cashback semanal não é um ganho sobre o total de perdas que teve durante a semana.
+
+Para recebê-lo, durante a semana precisa ter tido mais perdas do que ganhos, e é a partir dessa diferença que é tirada sua porcentagem de cashback.
+
+Aqui vão em detalhes os valores da sua semana:
+
+Apostado em dinheiro real: R$ ${real_bet.value}
+Ganho em dinheiro real: R$ ${real_won.value}
+Recompensas recebidas/vendidas: R$ ${sell_amount.value}
+Bônus convertidos: R$ ${transfer_amount.value}
+Cashback semana anterior: R$ ${last_week_cashback.value}
+Saques considerados: R$ ${withdrawals_amount.value}
+Rakeback diário: R$ ${daily_rakeback_amount.value}
+Recompensa cashback: R$ ${cashback_reward_amount.value}
+Recompensa rakeback: R$ ${rakeback_reward_amount.value}
+Ganhos Free Spins: R$ ${softswiss_free_spins_amount.value}
+
+Mais informações:
+https://support.blaze-help.com/hc/pt-br/articles/360007716017-Como-funciona-o-cashback-reembolso
+  `.trim();
+
+  document.getElementById("resultado").innerHTML = `
+    <pre>${dados}</pre>
+    <button onclick="navigator.clipboard.writeText(\`${dados}\`)">Copiar</button>
   `;
 }
+
+/* START */
+menu();
 </script>
 
 </body>
