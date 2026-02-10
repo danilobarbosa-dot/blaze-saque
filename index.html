@@ -163,17 +163,13 @@ function classificacaoJR() {
   `);
 }
 
-/* ================= CASHBACK ================= */
+/* ================= CASHBACK (CORRIGIDO) ================= */
 function cashback() {
   tela(`
     <h2>Cálculo de Cashback</h2>
 
-    <p><b>Aposta real</b><input id="aposta" type="number"></p>
-    <p><b>Valor ganho</b><input id="ganho" type="number"></p>
-    <p><b>Recompensas reivindicadas/vendidas</b><input id="recompensas" type="number"></p>
-    <p><b>Bônus convertidos</b><input id="bonus" type="number"></p>
-    <p><b>Reembolso semana anterior</b><input id="reembolsoAnterior" type="number"></p>
-    <p><b>Recompensa de reembolso</b><input id="recompensaReembolso" type="number"></p>
+    <p><b>Ganhos (R$)</b><input id="ganhos" type="number"></p>
+    <p><b>Perdas (R$)</b><input id="perdas" type="number"></p>
 
     <p><b>Nível do cliente</b>
       <select id="nivel">
@@ -196,20 +192,17 @@ function cashback() {
 }
 
 function calcularCashback() {
-  const perdas =
-    Number(aposta.value)
-    - Number(ganho.value)
-    - Number(recompensas.value)
-    - Number(bonus.value)
-    - Number(reembolsoAnterior.value)
-    - Number(recompensaReembolso.value);
+  const ganhos = Number(ganhos.value);
+  const perdas = Number(perdas.value);
+  const percentual = Number(nivel.value);
 
-  const perdasFinal = perdas > 0 ? perdas : 0;
-  const cashback = perdasFinal * Number(nivel.value);
+  const perdaReal = perdas - ganhos;
+  const perdaFinal = perdaReal > 0 ? perdaReal : 0;
+  const cashback = perdaFinal * percentual;
 
   resultado.innerHTML = `
     <p>
-      <b>Perdas calculadas:</b> R$ ${perdasFinal.toFixed(2)}<br>
+      <b>Perda real:</b> R$ ${perdaFinal.toFixed(2)}<br>
       <b>Cashback estimado:</b> R$ ${cashback.toFixed(2)}
     </p>
     <p style="font-size:12px;">
