@@ -15,7 +15,7 @@
     }
 
     .box {
-      width: 420px;
+      width: 450px;
       border: 2px solid #e10600;
       border-radius: 10px;
       padding: 24px;
@@ -79,17 +79,14 @@
       background: #333;
     }
 
-    .info {
-      font-size: 14px;
-      margin-top: 15px;
-    }
-
     pre {
       background: #f7f7f7;
-      padding: 10px;
+      padding: 15px;
       white-space: pre-wrap;
       text-align: left;
       font-size: 13px;
+      border: 1px solid #ddd;
+      margin-top: 20px;
     }
 
     .logo-area {
@@ -138,21 +135,15 @@ function inicioSaque() {
     <button onclick="saqueRecebido()">Sim</button>
     <button onclick="tempoSaque()">Não</button>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
   `);
 }
 
 function saqueRecebido() {
   tela(`
     <h2>Ótimo!</h2>
-    <p>Os saques podem levar de <b>2 até 48 horas</b>. Oriente o cliente a aguardar o prazo padrão.</p>
+    <p>Os saques podem levar de 2 até 48 horas. Oriente o cliente a aguardar o prazo padrão.</p>
     <button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
   `);
 }
 
@@ -192,7 +183,6 @@ function complete() {
 function saque48() {
   tela(`
     <h2>Saque acima de 48 horas</h2>
-    <p>Verifique o status:</p>
     <p><b>Pending/Waiting:</b> <a href="https://support.blaze-help.com/hc/pt-br/articles/13980562814492-Base-Chat-Transaction-Issues-Form" target="_blank">Formulário de Transações</a></p>
     <p><b>Complete:</b> <a href="https://docs.google.com/document/d/19_tKhSg62ZGcmtLplxcYjoGRfxt43z5FfuG476dNE50/edit" target="_blank">Formulário de Contato</a></p>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
@@ -263,16 +253,19 @@ function jrCritico() {
 function inicioCashback() {
   tela(`
     <h2>Cálculo Individual Cashback</h2>
-    <p>Apostado em dinheiro real (real_bet) <b>R$</b> <input id="real_bet" type="number" step="0.01"></p>
-    <p>Ganho em dinheiro real (real_won) <b>R$</b> <input id="real_won" type="number" step="0.01"></p>
-    <p>Recompensas recebidas/vendidas (sell_amount) <b>R$</b> <input id="sell_amount" type="number" step="0.01"></p>
-    <p>Bônus convertidos em saldo real (transfer_amount) <b>R$</b> <input id="transfer_amount" type="number" step="0.01"></p>
-    <p>Cashback da semana anterior (last_week_cashback) <b>R$</b> <input id="last_week_cashback" type="number" step="0.01"></p>
-    <p>Saques considerados no cálculo (withdrawals_amount) <b>R$</b> <input id="withdrawals_amount" type="number" step="0.01"></p>
-    <p>Rakeback diário recebido (daily_rakeback_amount) <b>R$</b> <input id="daily_rakeback_amount" type="number" step="0.01"></p>
-    <p>Recompensa de cashback recebida no período (cashback_reward_amount) <b>R$</b> <input id="cashback_reward_amount" type="number" step="0.01"></p>
-    <p>Recompensa de rakeback recebida (rakeback_reward_amount) <b>R$</b> <input id="rakeback_reward_amount" type="number" step="0.01"></p>
-    <p>Ganhos de Free Spins / rodadas grátis (softswiss_free_spins_amount) <b>R$</b> <input id="softswiss_free_spins_amount" type="number" step="0.01"></p>
+    <p><b>Preencha os campos</b></p>
+    
+    <p>Apostado em dinheiro real (real_bet): <input id="real_bet" type="number" step="0.01"></p>
+    <p>Ganho em dinheiro real (real_won): <input id="real_won" type="number" step="0.01"></p>
+    <p>Recompensas recebidas/vendidas (sell_amount): <input id="sell_amount" type="number" step="0.01"></p>
+    <p>Bônus convertidos em saldo real (transfer_amount): <input id="transfer_amount" type="number" step="0.01"></p>
+    <p>Cashback da semana anterior (last_week_cashback): <input id="last_week_cashback" type="number" step="0.01"></p>
+    <p>Saques considerados no cálculo (withdrawals_amount): <input id="withdrawals_amount" type="number" step="0.01"></p>
+    <p>Rakeback diário recebido (daily_rakeback_amount): <input id="daily_rakeback_amount" type="number" step="0.01"></p>
+    <p>Recompensa de cashback recebida no período (cashback_reward_amount): <input id="cashback_reward_amount" type="number" step="0.01"></p>
+    <p>Recompensa de rakeback recebida (rakeback_reward_amount): <input id="rakeback_reward_amount" type="number" step="0.01"></p>
+    <p>Ganhos de Free Spins/rodadas grátis (softswiss_free_spins_amount): <input id="softswiss_free_spins_amount" type="number" step="0.01"></p>
+
     <button onclick="gerarResumo()">Pronto</button>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
     <div id="resultado"></div>
@@ -280,31 +273,51 @@ function inicioCashback() {
 }
 
 function gerarResumo() {
-  const campos = [
-    {id: "real_bet", label: "Apostado em dinheiro real (real_bet)"},
-    {id: "real_won", label: "Ganho em dinheiro real (real_won)"},
-    {id: "sell_amount", label: "Recompensas recebidas/vendidas (sell_amount)"},
-    {id: "transfer_amount", label: "Bônus convertidos em saldo real (transfer_amount)"},
-    {id: "last_week_cashback", label: "Cashback da semana anterior (last_week_cashback)"},
-    {id: "withdrawals_amount", label: "Saques considerados no cálculo (withdrawals_amount)"},
-    {id: "daily_rakeback_amount", label: "Rakeback diário recebido (daily_rakeback_amount)"},
-    {id: "cashback_reward_amount", label: "Recompensa de cashback recebida no período (cashback_reward_amount)"},
-    {id: "rakeback_reward_amount", label: "Recompensa de rakeback recebida (rakeback_reward_amount)"},
-    {id: "softswiss_free_spins_amount", label: "Ganhos de Free Spins/rodadas grátis (softswiss_free_spins_amount)"}
+  const ids = [
+    "real_bet", "real_won", "sell_amount", "transfer_amount", "last_week_cashback",
+    "withdrawals_amount", "daily_rakeback_amount", "cashback_reward_amount", 
+    "rakeback_reward_amount", "softswiss_free_spins_amount"
   ];
-  
-  let resumoTexto = "";
-  campos.forEach(campo => {
-    const valor = document.getElementById(campo.id).value || "0.00";
-    resumoTexto += `${campo.label}: R$ ${parseFloat(valor).toFixed(2)}\n`;
+
+  const labels = [
+    "Apostado em dinheiro real (real_bet)",
+    "Ganho em dinheiro real (real_won)",
+    "Recompensas recebidas/vendidas (sell_amount)",
+    "Bônus convertidos em saldo real (transfer_amount)",
+    "Cashback da semana anterior (last_week_cashback)",
+    "Saques considerados no cálculo (withdrawals_amount)",
+    "Rakeback diário recebido (daily_rakeback_amount)",
+    "Recompensa de cashback recebida no período (cashback_reward_amount)",
+    "Recompensa de rakeback recebida (rakeback_reward_amount)",
+    "Ganhos de Free Spins/rodadas grátis (softswiss_free_spins_amount)"
+  ];
+
+  let valoresTexto = "";
+  ids.forEach((id, index) => {
+    const val = document.getElementById(id).value || "0.00";
+    valoresTexto += `${labels[index]}: R$ ${parseFloat(val).toFixed(2)}\n`;
   });
 
-  resumoTexto += "\nMais informações:\nhttps://support.blaze-help.com/hc/pt-br/articles/360007716017-Como-funciona-o-cashback-reembolso";
+  const textoFinal = `É importante que saiba que o cashback semanal não é um ganho sobre o total de perdas que teve durante a semana.
+
+Para recebê-lo, durante a semana precisa ter tido mais perdas do que ganhos, e é a partir dessa diferença que é tirada sua porcentagem de cashback.
+
+Aqui vão em detalhes os valores da sua semana:
+
+${valoresTexto}
+
+( Mais informações sobre como funciona o calculo do cashback em https://support.blaze-help.com/hc/pt-br/articles/360007716017-Como-funciona-o-cashback-reembolso )`;
 
   document.getElementById("resultado").innerHTML = `
-    <pre>${resumoTexto}</pre>
-    <button onclick="navigator.clipboard.writeText(\`${resumoTexto}\`)">Copiar</button>
+    <pre>${textoFinal}</pre>
+    <button onclick="copyText(\`${textoFinal.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`)">Copiar</button>
   `;
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Texto copiado para a área de transferência!");
+  });
 }
 
 /* START */
