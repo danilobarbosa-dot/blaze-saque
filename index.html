@@ -305,11 +305,29 @@ function jrMedio() {
 }
 
 function jrAlto() {
-  tela(`<h2>🟠 Risco Alto</h2><p>Encaminhar imediatamente para o supervisor.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+  tela(`
+    <h2>🟠 Risco Alto</h2>
+    <p><b>Ações necessárias:</b></p>
+    <ul>
+      <li>Enviar script descrito no fluxo.</li>
+      <li>Colocar a tag <b>responsible gambling</b> no Zendesk.</li>
+      <li>Encaminhar imediatamente para o supervisor.</li>
+    </ul>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
 }
 
 function jrCritico() {
-  tela(`<h2>🔴 Risco Crítico</h2><p>Encaminhar imediatamente para o supervisor.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+  tela(`
+    <h2>🔴 Risco Crítico</h2>
+    <p><b>Ações necessárias:</b></p>
+    <ul>
+      <li>Enviar script descrito no fluxo.</li>
+      <li>Colocar a tag <b>responsible gambling</b> no Zendesk.</li>
+      <li>Encaminhar imediatamente para o supervisor.</li>
+    </ul>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
 }
 
 /* ===================== CASHBACK ===================== */
