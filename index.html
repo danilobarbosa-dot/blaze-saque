@@ -70,7 +70,7 @@
     }
 
     .footer {
-      margin-top: 15px;
+      margin-top: 20px;
       font-size: 12px;
       color: #999;
     }
@@ -112,8 +112,8 @@ function saqueRecebido() {
       financeiro conclua o processamento.
     </p>
     <p>
-      Mesmo após a conclusão, pode haver um <b>prazo bancário adicional</b>
-      para o valor constar no extrato.
+      Após a conclusão, ainda pode haver um <b>prazo bancário adicional</b>
+      para o valor constar no extrato do cliente.
     </p>
     <p>Oriente o cliente a aguardar o prazo padrão.</p>
 
@@ -144,8 +144,7 @@ function statusSaque() {
   tela(`
     <h2>Status do Saque</h2>
     <p>Qual o status do saque no sistema?</p>
-
-    <button onclick="pending()">Pending Review / Waiting Input</button>
+    <button onclick="pending()">Pending_review / Waiting_input</button>
     <button onclick="refunded()">Refunded</button>
     <button onclick="complete()">Complete</button>
 
@@ -161,10 +160,10 @@ function pending() {
     <h2>Saque em Análise</h2>
     <p>
       O status <b>Pending Review</b> ou <b>Waiting Input</b> indica que o saque
-      ainda está em processamento ou aguarda alguma validação.
+      ainda está em processamento ou aguardando validação interna.
     </p>
     <p>
-      Oriente o cliente a aguardar o prazo padrão.<br>
+      Oriente o cliente a aguardar o prazo padrão de processamento.<br>
       Enviar atalho <b>/prazo_saque</b>.
     </p>
 
@@ -180,10 +179,10 @@ function refunded() {
   tela(`
     <h2>Saque Reembolsado</h2>
     <p>
-      O saque foi <b>reembolsado a pedido do usuário</b> e o valor retornou ao saldo.
+      O saque foi reembolsado a pedido do usuário e o valor retornou ao saldo.
     </p>
     <p>
-      Não é recomendado cancelar e solicitar um novo saque imediatamente.<br>
+      Não é recomendado cancelar e solicitar um novo saque.<br>
       Enviar atalho <b>/prazo_saque</b>.
     </p>
 
@@ -216,12 +215,12 @@ function complete() {
 
 function saque48() {
   tela(`
-    <h2>Saque acima de 48 horas</h2>
+    <h2>Saque +48h</h2>
     <p>
       O saque ultrapassou <b>48 horas de processamento</b>.
     </p>
     <p>
-      Abrir o formulário de problemas de transações e
+      Abrir formulário de problemas de transações e
       preencher a planilha do <b>BCTF</b> conforme o procedimento interno.
     </p>
 
