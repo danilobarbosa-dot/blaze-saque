@@ -21,6 +21,8 @@
       padding: 24px;
       box-shadow: 0 0 12px rgba(0,0,0,0.1);
       text-align: center;
+      overflow-y: auto;
+      max-height: 95vh;
     }
 
     h2 {
@@ -43,6 +45,13 @@
       color: #e10600;
       font-weight: bold;
       text-decoration: none;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      box-sizing: border-box;
     }
 
     button {
@@ -84,6 +93,14 @@
       font-size: 14px;
       margin-top: 15px;
     }
+
+    pre {
+      background: #f7f7f7;
+      padding: 10px;
+      white-space: pre-wrap;
+      text-align: left;
+      font-size: 13px;
+    }
   </style>
 </head>
 <body>
@@ -102,6 +119,7 @@ function menu() {
 
     <button onclick="inicioSaque()">💰 Problemas de Saque</button>
     <button onclick="inicioJR()">🎯 Jogo Responsável</button>
+    <button onclick="inicioCashback()">🧮 Cálculo Individual Cashback</button>
 
     <div class="logo-area">
       <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
@@ -322,6 +340,50 @@ function jrCritico() {
       <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
     </div>
   `);
+}
+
+/* ===================== CASHBACK ===================== */
+
+function inicioCashback() {
+  tela(`
+    <h2>Cálculo Individual Cashback</h2>
+
+    <p>Apostado em dinheiro real (real_bet)<input id="real_bet" type="number"></p>
+    <p>Ganho em dinheiro real (real_won)<input id="real_won" type="number"></p>
+    <p>Recompensas recebidas/vendidas (sell_amount)<input id="sell_amount" type="number"></p>
+    <p>Bônus convertidos em saldo real (transfer_amount)<input id="transfer_amount" type="number"></p>
+    <p>Cashback da semana anterior (last_week_cashback)<input id="last_week_cashback" type="number"></p>
+    <p>Saques considerados no cálculo (withdrawals_amount)<input id="withdrawals_amount" type="number"></p>
+    <p>Rakeback diário recebido (daily_rakeback_amount)<input id="daily_rakeback_amount" type="number"></p>
+    <p>Recompensa de cashback recebida no período (cashback_reward_amount)<input id="cashback_reward_amount" type="number"></p>
+    <p>Recompensa de rakeback recebida (rakeback_reward_amount)<input id="rakeback_reward_amount" type="number"></p>
+    <p>Ganhos de Free Spins/rodadas grátis (softswiss_free_spins_amount)<input id="softswiss_free_spins_amount" type="number"></p>
+
+    <button onclick="gerarResumo()">Pronto</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+
+    <div id="resultado"></div>
+  `);
+}
+
+function gerarResumo() {
+  const texto = `
+Apostado em dinheiro real (real_bet): ${real_bet.value}
+Ganho em dinheiro real (real_won): ${real_won.value}
+Recompensas recebidas/vendidas (sell_amount): ${sell_amount.value}
+Bônus convertidos em saldo real (transfer_amount): ${transfer_amount.value}
+Cashback da semana anterior (last_week_cashback): ${last_week_cashback.value}
+Saques considerados no cálculo (withdrawals_amount): ${withdrawals_amount.value}
+Rakeback diário recebido (daily_rakeback_amount): ${daily_rakeback_amount.value}
+Recompensa de cashback recebida no período (cashback_reward_amount): ${cashback_reward_amount.value}
+Recompensa de rakeback recebida (rakeback_reward_amount): ${rakeback_reward_amount.value}
+Ganhos de Free Spins/rodadas grátis (softswiss_free_spins_amount): ${softswiss_free_spins_amount.value}
+`.trim();
+
+  document.getElementById("resultado").innerHTML = `
+    <pre>${texto}</pre>
+    <button onclick="navigator.clipboard.writeText(\`${texto}\`)">Copiar</button>
+  `;
 }
 
 /* START */
