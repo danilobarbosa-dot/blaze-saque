@@ -23,7 +23,6 @@
     }
     h2 { color: #e10600; margin-bottom: 16px; }
     p { color: #333; line-height: 1.5; text-align: left; }
-    a { color: #e10600; font-weight: bold; text-decoration: none; }
     button {
       width: 100%;
       padding: 14px;
@@ -163,13 +162,18 @@ function classificacaoJR() {
   `);
 }
 
-/* ================= CASHBACK (CORRIGIDO) ================= */
+/* ================= CASHBACK (SIMPLIFICADO) ================= */
 function cashback() {
   tela(`
     <h2>Cálculo de Cashback</h2>
 
-    <p><b>Ganhos (R$)</b><input id="ganhos" type="number"></p>
-    <p><b>Perdas (R$)</b><input id="perdas" type="number"></p>
+    <p><b>Ganhos do cliente (R$)</b>
+      <input id="ganhos" type="number" placeholder="Ex: 1000">
+    </p>
+
+    <p><b>Perdas do cliente (R$)</b>
+      <input id="perdas" type="number" placeholder="Ex: 1200">
+    </p>
 
     <p><b>Nível do cliente</b>
       <select id="nivel">
@@ -187,26 +191,28 @@ function cashback() {
 
     <div id="resultado" class="info"></div>
 
-    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
   `);
 }
 
 function calcularCashback() {
-  const ganhos = Number(ganhos.value);
-  const perdas = Number(perdas.value);
-  const percentual = Number(nivel.value);
+  const ganhos = Number(document.getElementById("ganhos").value);
+  const perdas = Number(document.getElementById("perdas").value);
+  const percentual = Number(document.getElementById("nivel").value);
 
   const perdaReal = perdas - ganhos;
-  const perdaFinal = perdaReal > 0 ? perdaReal : 0;
-  const cashback = perdaFinal * percentual;
+  const base = perdaReal > 0 ? perdaReal : 0;
+  const cashback = base * percentual;
 
   resultado.innerHTML = `
     <p>
-      <b>Perda real:</b> R$ ${perdaFinal.toFixed(2)}<br>
+      <b>Base de cálculo:</b> R$ ${base.toFixed(2)}<br>
       <b>Cashback estimado:</b> R$ ${cashback.toFixed(2)}
     </p>
     <p style="font-size:12px;">
-      ⚠️ Valor estimado. O cálculo final é feito automaticamente pelo sistema.
+      ⚠️ Valor estimado. O cálculo final é realizado automaticamente pelo sistema.
     </p>
   `;
 }
