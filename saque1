@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Blaze – Problemas de Saque</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      width: 420px;
+      border: 2px solid #e10600;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #e10600;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.5;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      background: #e10600;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #b00500;
+    }
+
+    .secondary {
+      background: #555;
+    }
+
+    .secondary:hover {
+      background: #333;
+    }
+
+    .logo-area {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .logo-area img {
+      width: 100px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box" id="app"></div>
+
+<script>
+const app = document.getElementById("app");
+
+function tela(conteudo) {
+  app.innerHTML = conteudo;
+}
+
+/* TELA INICIAL */
+function inicio() {
+  tela(`
+    <h2>Problemas de Saque</h2>
+    <p>O cliente recebeu o saque?</p>
+    <button onclick="saqueRecebido()">Sim</button>
+    <button onclick="tempoSaque()">Não</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* RECEBEU */
+function saqueRecebido() {
+  tela(`
+    <h2>Ótimo!</h2>
+    <p>
+      Os saques podem levar de <b>2 até 48 horas</b> para que nosso intermediário
+      financeiro conclua o processamento.<br><br>
+      Oriente sempre o cliente a aguardar o prazo padrão.
+    </p>
+    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* TEMPO */
+function tempoSaque() {
+  tela(`
+    <h2>Tempo do Saque</h2>
+    <p>Há quanto tempo o saque foi solicitado?</p>
+    <button onclick="statusSaque()">Menos de 48 horas</button>
+    <button onclick="saque48()">Mais de 48 horas</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* STATUS */
+function statusSaque() {
+  tela(`
+    <h2>Status do Saque</h2>
+    <p>Qual o status do saque no sistema?</p>
+    <button onclick="pending()">Pending_review / Waiting_input</button>
+    <button onclick="refunded()">Refunded</button>
+    <button onclick="complete()">Complete</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* PENDING */
+function pending() {
+  tela(`
+    <h2>Saque em análise</h2>
+    <p>
+      Oriente o cliente a aguardar o prazo padrão de processamento.
+      Envie o atalho <b>/prazo saque</b>.
+    </p>
+    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* REFUNDED */
+function refunded() {
+  tela(`
+    <h2>Saque reembolsado</h2>
+    <p>
+      O saque foi reembolsado a pedido do usuário.
+      Não é recomendado cancelar e solicitar um novo saque,
+      peça para o cliente solicitar o saque novamente e aguardar
+      e envie o atalho <b>/prazo saque</b>.
+    </p>
+    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* COMPLETE */
+function complete() {
+  tela(`
+    <h2>Saque concluído</h2>
+    <p>
+      O valor já foi enviado ao banco do cliente.<br><br>
+      Oriente a verificar o extrato bancário e aguardar o prazo da
+      instituição financeira.<br><br>
+      Caso não localize o valor, encaminhar o formulário de contato
+      utilizando <b>/contact form</b>.
+    </p>
+    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* +48H */
+function saque48() {
+  tela(`
+    <h2>Saque acima de 48 horas</h2>
+    <p>
+      Caso o saque ultrapasse 48 horas de processamento e o cliente
+      verifique no banco que possui a chave pix CPF cadastrada e o
+      valor não caiu, siga os passos abaixo.<br><br>
+      Enviar formulário de problemas de transações para o cliente e
+      preencha a planilha do BCTF conforme orientação interna.
+    </p>
+    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
+  `);
+}
+
+/* START */
+inicio();
+</script>
+
+</body>
+</html>
