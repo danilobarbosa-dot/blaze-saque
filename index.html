@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Blaze – Problemas de Saque</title>
+  <title>Blaze – Fluxos de Atendimento</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,7 +13,6 @@
       height: 100vh;
       margin: 0;
     }
-
     .box {
       width: 420px;
       border: 2px solid #e10600;
@@ -22,29 +21,9 @@
       box-shadow: 0 0 12px rgba(0,0,0,0.1);
       text-align: center;
     }
-
-    h2 {
-      color: #e10600;
-      margin-bottom: 16px;
-    }
-
-    p {
-      color: #333;
-      line-height: 1.5;
-      text-align: left;
-    }
-
-    ul {
-      text-align: left;
-      color: #333;
-    }
-
-    a {
-      color: #e10600;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
+    h2 { color: #e10600; margin-bottom: 16px; }
+    p { color: #333; line-height: 1.5; text-align: left; }
+    a { color: #e10600; font-weight: bold; text-decoration: none; }
     button {
       width: 100%;
       padding: 14px;
@@ -57,28 +36,18 @@
       font-weight: bold;
       cursor: pointer;
     }
-
-    button:hover {
-      background: #b00500;
+    button:hover { background: #b00500; }
+    .secondary { background: #555; }
+    .secondary:hover { background: #333; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
     }
-
-    .secondary {
-      background: #555;
-    }
-
-    .secondary:hover {
-      background: #333;
-    }
-
-    .logo-area {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .logo-area img {
-      width: 100px;
-      opacity: 0.9;
-    }
+    .info { font-size: 14px; margin-top: 15px; }
+    .logo-area { margin-top: 20px; text-align: center; }
+    .logo-area img { width: 100px; opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -87,180 +56,82 @@
 
 <script>
 const app = document.getElementById("app");
+function tela(html){ app.innerHTML = html; }
 
-function tela(conteudo) {
-  app.innerHTML = conteudo;
-}
-
-/* TELA INICIAL */
-function inicio() {
+/* ================= MENU ================= */
+function menu() {
   tela(`
-    <h2>Problemas de Saque</h2>
-    <p>O cliente recebeu o saque?</p>
-    <button onclick="saqueRecebido()">Sim</button>
-    <button onclick="tempoSaque()">Não</button>
+    <h2>Fluxos de Atendimento</h2>
+    <p>Selecione o tipo de atendimento:</p>
+    <button onclick="inicioSaque()">💰 Problemas de Saque</button>
+    <button onclick="inicioJR()">🎯 Jogo Responsável</button>
+    <button onclick="cashback()">🧮 Cálculo de Cashback</button>
     <div class="logo-area">
       <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
     </div>
   `);
 }
 
-/* RECEBEU */
-function saqueRecebido() {
+/* ================= CASHBACK ================= */
+function cashback() {
   tela(`
-    <h2>Ótimo!</h2>
-    <p>
-      Os saques podem levar de <b>2 até 48 horas</b> para que nosso intermediário
-      financeiro conclua o processamento.<br><br>
-      Oriente sempre o cliente a aguardar o prazo padrão.
+    <h2>Cálculo de Cashback</h2>
+
+    <p><b>Aposta real</b><input id="aposta" type="number"></p>
+    <p><b>Valor ganho</b><input id="ganho" type="number"></p>
+    <p><b>Recompensas reivindicadas / vendidas</b><input id="recompensas" type="number"></p>
+    <p><b>Bônus convertidos em reais</b><input id="bonus" type="number"></p>
+    <p><b>Reembolso da semana anterior</b><input id="reembolsoAnterior" type="number"></p>
+    <p><b>Recompensa de reembolso</b><input id="recompensaReembolso" type="number"></p>
+
+    <p><b>Nível do cliente</b>
+      <select id="nivel">
+        <option value="0.03">🥈 Prata – 3%</option>
+        <option value="0.06">🥇 Ouro – 6%</option>
+        <option value="0.10">💎 Platina – 10%</option>
+        <option value="0.15">💎 Diamante – 15%</option>
+        <option value="0.20">💎 Diamante II – 20%</option>
+        <option value="0.25">💎 Diamante III – 25%</option>
+      </select>
     </p>
-    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
+
+    <button onclick="calcularCashback()">Calcular</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+
+    <div id="resultado" class="info"></div>
+
     <div class="logo-area">
       <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
     </div>
   `);
 }
 
-/* TEMPO */
-function tempoSaque() {
-  tela(`
-    <h2>Tempo do Saque</h2>
-    <p>Há quanto tempo o saque foi solicitado?</p>
-    <button onclick="statusSaque()">Menos de 48 horas</button>
-    <button onclick="saque48()">Mais de 48 horas</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
-  `);
-}
+function calcularCashback() {
+  const perdas =
+    Number(aposta.value)
+    - Number(ganho.value)
+    - Number(recompensas.value)
+    - Number(bonus.value)
+    - Number(reembolsoAnterior.value)
+    - Number(recompensaReembolso.value);
 
-/* STATUS */
-function statusSaque() {
-  tela(`
-    <h2>Status do Saque</h2>
-    <p>Qual o status do saque no sistema?</p>
-    <button onclick="pending()">Pending Review / Waiting Input</button>
-    <button onclick="refunded()">Refunded</button>
-    <button onclick="complete()">Complete</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
-  `);
-}
+  const perdasFinal = perdas > 0 ? perdas : 0;
+  const percentual = Number(nivel.value);
+  const cashback = perdasFinal * percentual;
 
-/* PENDING */
-function pending() {
-  tela(`
-    <h2>Saque em análise</h2>
+  resultado.innerHTML = `
     <p>
-      Oriente o cliente a aguardar o prazo padrão de processamento.<br><br>
-      Envie o atalho <b>/prazo saque</b>.
+      <b>Perdas calculadas:</b> R$ ${perdasFinal.toFixed(2)}<br>
+      <b>Cashback estimado:</b> R$ ${cashback.toFixed(2)}
     </p>
-    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
-  `);
-}
-
-/* REFUNDED */
-function refunded() {
-  tela(`
-    <h2>Saque reembolsado</h2>
-    <p>
-      O saque foi reembolsado a pedido do usuário.<br><br>
-      Não é recomendado cancelar e solicitar um novo saque.
-      Oriente o cliente a solicitar o saque novamente, aguardar o prazo
-      e enviar o atalho <b>/prazo saque</b>.
+    <p style="font-size:12px;">
+      ⚠️ Valor estimado. O cálculo final é realizado automaticamente pelo sistema.
     </p>
-    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
-  `);
-}
-
-/* COMPLETE */
-function complete() {
-  tela(`
-    <h2>Saque concluído</h2>
-    <p>
-      O valor já foi enviado ao banco do cliente.<br><br>
-      Oriente a verificar o extrato bancário e aguardar o prazo da
-      instituição financeira.<br><br>
-      Caso não localize o valor, encaminhar o formulário de contato
-      utilizando <b>/contact form</b>.
-    </p>
-    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
-  `);
-}
-
-/* +48H — ATUALIZADO */
-function saque48() {
-  tela(`
-    <h2>Saque acima de 48 horas</h2>
-
-    <p>
-      Quando um saque ultrapassa <b>48 horas</b>, é necessário verificar o
-      <b>status da transação</b>.
-    </p>
-
-    <p>
-      Se o status estiver como <b>Pending Review</b> ou <b>Waiting Input</b>
-      após 48 horas, oriente o cliente a preencher o
-      <b>Formulário de Problemas de Transações</b>:
-    </p>
-
-    <p>
-      <a href="https://support.blaze-help.com/hc/pt-br/articles/13980562814492-Base-Chat-Transaction-Issues-Form" target="_blank">
-        Acessar formulário de problemas de transações
-      </a>
-    </p>
-
-    <p>
-      Após o preenchimento do formulário pelo cliente:
-    </p>
-
-    <ul>
-      <li>Preencher a <b>planilha do BCTIF</b></li>
-      <li>Seguir os procedimentos descritos neste material:</li>
-    </ul>
-
-    <p>
-      <a href="https://docs.google.com/document/d/1nAdViRyXykIXYSqihMK8LlVlXgCsm09vH6qBhmdWN6E/edit" target="_blank">
-        Procedimentos BCTIF
-      </a>
-    </p>
-
-    <p>
-      Caso antes ou após as 48 horas o status esteja em <b>Complete</b>, informe ao cliente
-      que o valor já foi enviado ao banco selecionado no momento do saque.
-    </p>
-
-    <p>
-      Se o cliente não localizar o valor junto ao banco, oriente o preenchimento
-      do <b>Formulário de Contato</b>:
-    </p>
-
-    <p>
-      <a href="https://docs.google.com/document/d/19_tKhSg62ZGcmtLplxcYjoGRfxt43z5FfuG476dNE50/edit" target="_blank">
-        Acessar formulário de contato
-      </a>
-    </p>
-
-    <button class="secondary" onclick="inicio()">Reiniciar atendimento</button>
-
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
-  `);
+  `;
 }
 
 /* START */
-inicio();
+menu();
 </script>
 
 </body>
