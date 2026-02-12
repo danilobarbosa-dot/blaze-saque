@@ -162,7 +162,7 @@ function menu() {
   `);
 }
 
-/* ===================== BLOG (LINKS ATUALIZADOS) ===================== */
+/* ===================== BLOG ===================== */
 function linksUteis() {
   const links = [
     { n: "Lei dos Grandes Números", l: "https://blaze.bet.br/pt/blog/article/lei-dos-grandes-numeros-nas-apostas" },
@@ -189,17 +189,11 @@ function linksUteis() {
     { n: "Sistema Suíço", l: "https://blaze.bet.br/pt/blog/article/sistema-suico" },
     { n: "Tipster nas Apostas", l: "https://blaze.bet.br/pt/blog/article/tipster-nas-apostas-esportivas" }
   ];
-
-  let htmlLinks = links.map(link => `<a href="${link.l}" target="_blank" class="link-item">🔗 ${link.n}</a>`).join('');
-
-  tela(`
-    <h2>Links Úteis - Blog</h2>
-    <div class="link-list">${htmlLinks}</div>
-    <button class="secondary" onclick="menu()">Voltar ao menu</button>
-  `);
+  let h = links.map(k => `<a href="${k.l}" target="_blank" class="link-item">🔗 ${k.n}</a>`).join('');
+  tela(`<h2>Links Úteis - Blog</h2><div class="link-list">${h}</div><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
 }
 
-/* ===================== PROBLEMAS DE SAQUE (TEXTOS ORIGINAIS) ===================== */
+/* ===================== PROBLEMAS DE SAQUE ===================== */
 function inicioSaque() {
   tela(`
     <h2>Problemas de Saque</h2>
@@ -248,35 +242,49 @@ function complete() { tela(`<h2>Saque concluído</h2><p>O valor já foi enviado 
 function saque48() {
   tela(`
     <h2>Saque acima de 48 horas</h2>
-    <p>Se status for <b>Pending Review/Waiting Input</b>, preencher formulário:</p>
+    <p>Quando um saque ultrapassa <b>48 horas</b>, é necessário verificar o <b>status da transação</b>:</p>
+    <p>Se status estiver como <b>Pending Review</b> ou <b>Waiting Input</b> após 48 horas, preencher o formulário:</p>
     <p><a href="https://support.blaze-help.com/hc/pt-br/articles/13980562814492-Base-Chat-Transaction-Issues-Form" target="_blank">Acessar formulário de transações</a></p>
     <ul>
       <li>Preencher planilha BCTIF</li>
       <li><a href="https://docs.google.com/document/d/1nAdViRyXykIXYSqihMK8LlVlXgCsm09vH6qBhmdWN6E/edit" target="_blank">Procedimentos BCTIF</a></li>
     </ul>
-    <p>Se status for <b>Complete</b> e cliente não localizou:</p>
+    <p>Se status estiver como <b>Complete</b> e cliente não localizou:</p>
     <p><a href="https://docs.google.com/document/d/19_tKhSg62ZGcmtLplxcYjoGRfxt43z5FfuG476dNE50/edit" target="_blank">Acessar formulário de contato</a></p>
     <button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button>
   `);
 }
 
-/* ===================== JOGO RESPONSÁVEL (RESTAURADO COMPLETO) ===================== */
+/* ===================== JOGO RESPONSÁVEL (ESTRUTURA COMPLETA) ===================== */
 function inicioJR() {
   tela(`
     <h2>Jogo Responsável</h2>
     <p>O cliente mencionou algo relacionado a apostas/jogo e problemas pessoais?</p>
+
     <button onclick="naoJR()">Não</button>
     <button onclick="classificacaoJR()">Sim</button>
+
     <p style="font-size: 14px; margin-top: 15px;">
       📄 <b>Material de apoio</b><br>
       Siga com o fluxograma aberto durante o atendimento.<br>
       <a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view?usp=drive_link" target="_blank">Acessar fluxograma em PDF</a>
     </p>
+
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
 }
 
-function naoJR() { tela(`<h2>Orientação</h2><p>➜ Siga o atendimento normalmente.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`); }
+function naoJR() {
+  tela(`
+    <h2>Orientação</h2>
+    <p>O cliente não mencionou problemas relacionados a apostas.<br><br>➜ Siga o atendimento normalmente.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
 
 function classificacaoJR() {
   tela(`
@@ -286,25 +294,53 @@ function classificacaoJR() {
     <button onclick="jrAlto()">🟠 Risco Alto</button>
     <button onclick="jrCritico()">🔴 Risco Crítico</button>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
   `);
 }
 
-function jrBaixo() { tela(`<h2>🟢 Risco Baixo</h2><p>Realizar acolhimento e seguir o script.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`); }
-function jrMedio() { tela(`<h2>🟡 Risco Médio</h2><p>Sugerir ferramentas JR.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`); }
+function jrBaixo() {
+  tela(`
+    <h2>🟢 Risco Baixo</h2>
+    <p>Realizar acolhimento e seguir o script de Jogo Responsável.</p>
+    <button class="secondary" onclick="classificacaoJR()">Voltar</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
+
+function jrMedio() {
+  tela(`
+    <h2>🟡 Risco Médio</h2>
+    <p>Sugerir ferramentas de Jogo Responsável: autolimitação, suspensão temporária ou autoexclusão.</p>
+    <button class="secondary" onclick="classificacaoJR()">Voltar</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+  `);
+}
 
 function jrAlto() {
   tela(`
     <h2>🟠 Risco Alto</h2>
-    <p><b>Ações:</b> Enviar script, colocar tag <b>responsible gambling</b> no Zendesk e encaminhar ao supervisor.</p>
-    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <p><b>Ações necessárias:</b></p>
+    <ul>
+      <li>Enviar script descrito no fluxo.</li>
+      <li>Colocar a tag <b>responsible gambling</b> no Zendesk.</li>
+      <li>Encaminhar imediatamente para o supervisor.</li>
+    </ul>
+    <button class="secondary" onclick="classificacaoJR()">Voltar</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
   `);
 }
 
 function jrCritico() {
   tela(`
     <h2>🔴 Risco Crítico</h2>
-    <p><b>Ações:</b> Enviar script, colocar tag <b>responsible gambling</b> no Zendesk e encaminhar ao supervisor.</p>
-    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <p><b>Ações necessárias:</b></p>
+    <ul>
+      <li>Enviar script descrito no fluxo.</li>
+      <li>Colocar a tag <b>responsible gambling</b> no Zendesk.</li>
+      <li>Encaminhar imediatamente para o supervisor.</li>
+    </ul>
+    <button class="secondary" onclick="classificacaoJR()">Voltar</button>
+    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
   `);
 }
 
@@ -337,14 +373,14 @@ function inicioCashback() {
 }
 
 function gerarResumo() {
-  const p = parseFloat(document.getElementById("porcentagem").value || 0);
-  const bet = parseFloat(document.getElementById("real_bet").value || 0);
-  const won = parseFloat(document.getElementById("real_won").value || 0);
-  const lastCb = parseFloat(document.getElementById("last_week_cb").value || 0);
-  const spins = parseFloat(document.getElementById("spins").value || 0);
-  const sell = parseFloat(document.getElementById("sell").value || 0);
-  const trans = parseFloat(document.getElementById("trans").value || 0);
-  const rake = parseFloat(document.getElementById("rake").value || 0);
+  const p = parseFloat(document.getElementById("porcentagem").value || 0),
+        bet = parseFloat(document.getElementById("real_bet").value || 0),
+        won = parseFloat(document.getElementById("real_won").value || 0),
+        lastCb = parseFloat(document.getElementById("last_week_cb").value || 0),
+        spins = parseFloat(document.getElementById("spins").value || 0),
+        sell = parseFloat(document.getElementById("sell").value || 0),
+        trans = parseFloat(document.getElementById("trans").value || 0),
+        rake = parseFloat(document.getElementById("rake").value || 0);
 
   const ex = lastCb + spins + sell + trans + rake;
   const gt = won + ex;
@@ -371,17 +407,11 @@ Cashback (BRL ${per.toFixed(2)} - ${p}%) = BRL ${fcb.toFixed(2)}
 
 ( Mais informações sobre como funciona o calculo do cashback em https://support.blaze-help.com/hc/pt-br/articles/360007716017-Como-funciona-o-cashback-reembolso )`;
 
-  document.getElementById("resultado").innerHTML = `
-    <pre id="preOutput">${textoFinal}</pre>
-    <button id="btnCopiar" onclick="executarCopia()">Copiar Mensagem</button>
-  `;
+  document.getElementById("resultado").innerHTML = `<pre id="preOutput">${textoFinal}</pre><button id="btnCopiar" onclick="executarCopia()">Copiar Mensagem</button>`;
 }
 
-/* FUNÇÃO DE CÓPIA COM FALLBACK PARA NAVEGADORES QUE BLOQUEIAM */
 function executarCopia() {
   const texto = document.getElementById("preOutput").innerText;
-  
-  // Tenta navigator.clipboard
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(texto).then(() => sucessoCopia()).catch(() => fallbackCopia(texto));
   } else {
@@ -391,29 +421,16 @@ function executarCopia() {
 
 function fallbackCopia(texto) {
   const ta = document.createElement("textarea");
-  ta.value = texto;
-  ta.style.position = "fixed"; // Evita scroll
-  document.body.appendChild(ta);
-  ta.focus();
-  ta.select();
-  try {
-    document.execCommand('copy');
-    sucessoCopia();
-  } catch (err) {
-    alert("Erro ao copiar automaticamente. Selecione o texto e copie manualmente.");
-  }
+  ta.value = texto; ta.style.position = "fixed";
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); sucessoCopia(); } catch (err) {}
   document.body.removeChild(ta);
 }
 
 function sucessoCopia() {
   const btn = document.getElementById("btnCopiar");
-  const originalText = btn.innerText;
-  btn.innerText = "✅ Copiado!";
-  btn.style.background = "#28a745";
-  setTimeout(() => {
-    btn.innerText = originalText;
-    btn.style.background = "#e10600";
-  }, 2000);
+  btn.innerText = "✅ Copiado!"; btn.style.background = "#28a745";
+  setTimeout(() => { btn.innerText = "Copiar Mensagem"; btn.style.background = "#e10600"; }, 2000);
 }
 
 menu();
