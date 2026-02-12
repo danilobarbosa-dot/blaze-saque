@@ -15,7 +15,7 @@
     }
 
     .box {
-      width: 450px;
+      width: 480px;
       border: 2px solid #e10600;
       border-radius: 10px;
       padding: 24px;
@@ -36,11 +36,6 @@
       text-align: left;
     }
 
-    ul {
-      text-align: left;
-      color: #333;
-    }
-
     input {
       width: 100%;
       padding: 10px;
@@ -59,13 +54,13 @@
 
     button {
       width: 100%;
-      padding: 14px;
-      margin: 10px 0;
+      padding: 12px;
+      margin: 5px 0;
       border: none;
       border-radius: 6px;
       background: #e10600;
       color: #fff;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
     }
@@ -80,6 +75,29 @@
 
     .secondary:hover {
       background: #333;
+    }
+
+    .link-list {
+      text-align: left;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+
+    .link-item {
+      display: block;
+      padding: 8px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+      color: #e10600;
+      text-decoration: none;
+    }
+
+    .link-item:hover {
+      background: #fff5f5;
     }
 
     pre {
@@ -100,11 +118,6 @@
     .logo-area img {
       width: 90px;
       opacity: 0.9;
-    }
-
-    .info {
-      font-size: 14px;
-      margin-top: 15px;
     }
 
     label {
@@ -136,10 +149,80 @@ function menu() {
     <button onclick="inicioSaque()">💸 Problemas de Saque</button>
     <button onclick="inicioJR()">🎯 Jogo Responsável</button>
     <button onclick="inicioCashback()">🧮 Cálculo Individual Cashback</button>
+    <button onclick="linksUteis()">🌐 Links úteis - Blog</button>
     
     <div class="logo-area">
       <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
     </div>
+  `);
+}
+
+/* ===================== LINKS ÚTEIS - BLOG (ATUALIZADO) ===================== */
+function linksUteis() {
+  const links = [
+    { n: "Lei dos Grandes Números", l: "https://blaze.bet.br/pt/blog/article/lei-dos-grandes-numeros-nas-apostas" },
+    { n: "RNG (Gerador de Números Aleatórios)", l: "https://blaze.bet.br/pt/blog/article/rng" },
+    { n: "Jogos de Aposta ou Azar?", l: "https://blaze.bet.br/pt/blog/article/jogos-de-aposta-ou-jogos-de-azar" },
+    { n: "Vício em Apostas", l: "https://blaze.bet.br/pt/blog/article/vicio-em-apostas" },
+    { n: "Golpes e Fraudes em Cassinos", l: "https://blaze.bet.br/pt/blog/article/golpes-e-fraudes-nos-cassinos-online" },
+    { n: "Gestão de Banca Responsável", l: "https://blaze.bet.br/pt/blog/article/gestao-de-banca-responsavel-em-apostas-online" },
+    { n: "Ferramentas de JR da Blaze", l: "https://blaze.bet.br/pt/blog/article/ferramentas-de-jogo-responsavel-da-blaze" },
+    { n: "Apostas Sistema", l: "https://blaze.bet.br/pt/blog/article/apostas-sistema" },
+    { n: "Guia de Análise de Riscos", l: "https://blaze.bet.br/pt/blog/article/guia-de-analise-de-riscos-nas-apostas-online" },
+    { n: "ROI em Apostas", l: "https://blaze.bet.br/pt/blog/article/roi-em-apostas" },
+    { n: "Apostas Futuras", l: "https://blaze.bet.br/pt/blog/article/apostas-futuras" },
+    { n: "Aposta Múltipla", l: "https://blaze.bet.br/pt/blog/article/aposta-multipla" },
+    { n: "xG (Expected Goals)", l: "https://blaze.bet.br/pt/blog/article/xg-expected-goals" },
+    { n: "Dupla Chance / Placar Exato", l: "https://blaze.bet.br/pt/blog/article/dupla-chance-1x2-ou-placar-exato" },
+    { n: "Provably Fair", l: "https://blaze.bet.br/pt/blog/article/provably-fair" },
+    { n: "Como sacar na Blaze", l: "https://blaze.bet.br/pt/blog/article/como-sacar-na-blaze" },
+    { n: "Autoexclusão", l: "https://blaze.bet.br/pt/blog/article/autoexclusao-nas-plataformas-de-apostas-online" },
+    { n: "Verificação de Identidade (KYC)", l: "https://blaze.bet.br/pt/blog/article/verificacao-de-identidade-nas-plataformas-de-apostas" },
+    { n: "Aposta Handicap", l: "https://blaze.bet.br/pt/blog/article/aposta-handicap" },
+    { n: "Rollover nas Apostas", l: "https://blaze.bet.br/pt/blog/article/rollover-nas-apostas" },
+    { n: "Surebet", l: "https://blaze.bet.br/pt/blog/article/surebet" },
+    { n: "Void Bet (Aposta Anulada)", l: "https://blaze.bet.br/pt/blog/article/void-bet" },
+    { n: "Handicap Asiático", l: "https://blaze.bet.br/pt/blog/article/handicap-asiatico-nas-apostas" },
+    { n: "Draw No Bet (DNB)", l: "https://blaze.bet.br/pt/blog/article/draw-no-bet" },
+    { n: "Over e Under", l: "https://blaze.bet.br/pt/blog/article/over-e-under" },
+    { n: "Handicap Europeu", l: "https://blaze.bet.br/pt/blog/article/handicap-europeu" },
+    { n: "Cashback da Blaze", l: "https://blaze.bet.br/pt/blog/article/cashback-da-blaze" },
+    { n: "Sic Bo", l: "https://blaze.bet.br/pt/blog/article/sic-bo" },
+    { n: "Game Shows", l: "https://blaze.bet.br/pt/blog/article/game-shows" },
+    { n: "Como escolher um Caça-níquel", l: "https://blaze.bet.br/pt/blog/article/como-escolher-um-caca-niquel" },
+    { n: "Símbolos Scatter", l: "https://blaze.bet.br/pt/blog/article/simbolos-scatter" },
+    { n: "Roleta Brasileira", l: "https://blaze.bet.br/pt/blog/article/roleta-brasileira" },
+    { n: "Slots Temáticos", l: "https://blaze.bet.br/pt/blog/article/caca-niqueis-tematicos" },
+    { n: "Compra de Bônus (Slots)", l: "https://blaze.bet.br/pt/blog/article/caca-niqueis-com-compra-de-bonus" },
+    { n: "Crash Games", l: "https://blaze.bet.br/pt/blog/article/crash-games" },
+    { n: "Vitórias em Cascata", l: "https://blaze.bet.br/pt/blog/article/vitorias-em-cascata-nos-slots" },
+    { n: "Maneiras de vencer nos Slots", l: "https://blaze.bet.br/pt/blog/article/maneiras-de-vencer-nos-slots" },
+    { n: "Compra de Recurso", l: "https://blaze.bet.br/pt/blog/article/o-que-e-a-compra-de-recurso-nos-cassinos-online" },
+    { n: "Bônus de Cassino Online", l: "https://blaze.bet.br/pt/blog/article/bonus-de-cassino-online" },
+    { n: "Enciclopédia de Apostas", l: "https://blaze.bet.br/pt/blog/article/enciclopedia-de-apostas-esportivas" },
+    { n: "Mercados de Apostas Esportivas", l: "https://blaze.bet.br/pt/blog/article/mercados-de-apostas-esportivas" },
+    { n: "Estratégia James Bond", l: "https://blaze.bet.br/pt/blog/article/estrategia-james-bond" },
+    { n: "Cassino ao Vivo", l: "https://blaze.bet.br/pt/blog/article/cassino-ao-vivo" },
+    { n: "Torneios de Cassino", l: "https://blaze.bet.br/pt/blog/article/torneios-de-cassino-online" },
+    { n: "Método Stake Fixa", l: "https://blaze.bet.br/pt/blog/article/metodo-da-stake-fixa-na-gestao-de-banca" },
+    { n: "Martingale", l: "https://blaze.bet.br/pt/blog/article/martingale" },
+    { n: "Scalping", l: "https://blaze.bet.br/pt/blog/article/scalping" },
+    { n: "Dutching", l: "https://blaze.bet.br/pt/blog/article/dutching" },
+    { n: "Clean Sheet (Folha Limpa)", l: "https://blaze.bet.br/pt/blog/article/clean-sheet-no-futebol" },
+    { n: "Glossário eSports", l: "https://blaze.bet.br/pt/blog/article/glossario-dos-esports" },
+    { n: "Drifter nas Apostas", l: "https://blaze.bet.br/pt/blog/article/drifter-nas-apostas-esportivas" },
+    { n: "Sistema Suíço", l: "https://blaze.bet.br/pt/blog/article/sistema-suico" },
+    { n: "Tipster nas Apostas", l: "https://blaze.bet.br/pt/blog/article/tipster-nas-apostas-esportivas" },
+    { n: "Scratching nas Apostas", l: "https://blaze.bet.br/pt/blog/article/scratching-nas-apostas-esportivas" }
+  ];
+
+  let htmlLinks = links.map(link => `<a href="${link.l}" target="_blank" class="link-item">🔗 ${link.n}</a>`).join('');
+
+  tela(`
+    <h2>Links Úteis - Blog</h2>
+    <p>Selecione um artigo para abrir:</p>
+    <div class="link-list">${htmlLinks}</div>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
 }
 
@@ -151,9 +234,6 @@ function inicioSaque() {
     <button onclick="saqueRecebido()">Sim</button>
     <button onclick="tempoSaque()">Não</button>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
   `);
 }
 
@@ -161,11 +241,8 @@ function saqueRecebido() {
   tela(`
     <h2>Ótimo!</h2>
     <p>Os saques podem levar de <b>2 até 48 horas</b> para que nosso intermediário financeiro conclua o processamento.<br><br>Oriente sempre o cliente a aguardar o prazo padrão.</p>
-    <button class="secondary" onclick="inicioSaque()">Reiniciar atendimento</button>
+    <button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
   `);
 }
 
@@ -191,28 +268,28 @@ function statusSaque() {
 }
 
 function pending() {
-  tela(`<h2>Saque em análise</h2><p>Oriente o cliente a aguardar o prazo padrão.<br><br>Envie o atalho <b>/prazo saque</b>.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+  tela(`<h2>Saque em análise</h2><p>Oriente o cliente a aguardar o prazo padrão.<br><br>Envie o atalho <b>/prazo saque</b>.</p><button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
 }
 
 function refunded() {
-  tela(`<h2>Saque reembolsado</h2><p>O saque foi reembolsado a pedido do usuário. Oriente o cliente a solicitar novamente e enviar o atalho <b>/prazo saque</b>.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+  tela(`<h2>Saque reembolsado</h2><p>O saque foi reembolsado a pedido do usuário. Oriente o cliente a solicitar novamente e enviar o atalho <b>/prazo saque</b>.</p><button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
 }
 
 function complete() {
-  tela(`<h2>Saque concluído</h2><p>O valor já foi enviado ao banco. Oriente a verificar o extrato ou utilizar <b>/contact form</b>.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+  tela(`<h2>Saque concluído</h2><p>O valor já foi enviado ao banco. Oriente a verificar o extrato ou utilizar <b>/contact form</b>.</p><button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
 }
 
 function saque48() {
   tela(`
     <h2>Saque acima de 48 horas</h2>
-    <p>Quando um saque ultrapassa <b>48 horas</b>, é necessário verificar o <b>status da transação</b>.</p>
-    <p>Se o status estiver como <b>Pending Review</b> ou <b>Waiting Input</b> após 48 horas, preencher o formulário:</p>
-    <p><a href="https://support.blaze-help.com/hc/pt-br/articles/13980562814492-Base-Chat-Transaction-Issues-Form" target="_blank">Acessar formulário de problemas de transações</a></p>
+    <p>Verifique o <b>status da transação</b>:</p>
+    <p>Se <b>Pending Review/Waiting Input</b>:</p>
+    <p><a href="https://support.blaze-help.com/hc/pt-br/articles/13980562814492-Base-Chat-Transaction-Issues-Form" target="_blank">Acessar formulário de transações</a></p>
     <ul>
       <li>Preencher planilha BCTIF</li>
       <li><a href="https://docs.google.com/document/d/1nAdViRyXykIXYSqihMK8LlVlXgCsm09vH6qBhmdWN6E/edit" target="_blank">Procedimentos BCTIF</a></li>
     </ul>
-    <p>Se status for <b>Complete</b> e cliente não localizou:</p>
+    <p>Se <b>Complete</b> e cliente não localizou:</p>
     <p><a href="https://docs.google.com/document/d/19_tKhSg62ZGcmtLplxcYjoGRfxt43z5FfuG476dNE50/edit" target="_blank">Acessar formulário de contato</a></p>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
@@ -222,7 +299,7 @@ function saque48() {
 function inicioJR() {
   tela(`
     <h2>Jogo Responsável</h2>
-    <p>O cliente mencionou algo relacionado a apostas/jogo e problemas pessoais?</p>
+    <p>O cliente mencionou algo relacionado a apostas e problemas pessoais?</p>
 
     <button onclick="naoJR()">Não</button>
     <button onclick="classificacaoJR()">Sim</button>
@@ -230,24 +307,15 @@ function inicioJR() {
     <p class="info">
       📄 <b>Material de apoio</b><br>
       Siga com o fluxograma aberto durante o atendimento.<br>
-      <a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view?usp=drive_link" target="_blank">
-        Acessar fluxograma em PDF
-      </a>
+      <a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view?usp=drive_link" target="_blank">Acessar fluxograma em PDF</a>
     </p>
 
-    <div class="logo-area">
-      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
-    </div>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
 }
 
 function naoJR() {
-  tela(`
-    <h2>Orientação</h2>
-    <p>O cliente não mencionou problemas relacionados a apostas.<br><br>➜ Siga o atendimento normalmente.</p>
-    <button class="secondary" onclick="menu()">Voltar ao menu</button>
-  `);
+  tela(`<h2>Orientação</h2><p>➜ Siga o atendimento normalmente.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
 }
 
 function classificacaoJR() {
@@ -261,23 +329,13 @@ function classificacaoJR() {
   `);
 }
 
-function jrBaixo() {
-  tela(`<h2>🟢 Risco Baixo</h2><p>Realizar acolhimento e seguir o script de Jogo Responsável.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
-}
-
-function jrMedio() {
-  tela(`<h2>🟡 Risco Médio</h2><p>Sugerir ferramentas de Jogo Responsável: autolimitação, suspensão temporária ou autoexclusão.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
-}
+function jrBaixo() { tela(`<h2>🟢 Risco Baixo</h2><p>Realizar acolhimento e seguir o script.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`); }
+function jrMedio() { tela(`<h2>🟡 Risco Médio</h2><p>Sugerir ferramentas JR.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`); }
 
 function jrAlto() {
   tela(`
     <h2>🟠 Risco Alto</h2>
-    <p><b>Ações necessárias:</b></p>
-    <ul>
-      <li>Enviar script descrito no fluxo.</li>
-      <li>Colocar a tag <b>responsible gambling</b> no Zendesk.</li>
-      <li>Encaminhar imediatamente para o supervisor.</li>
-    </ul>
+    <p><b>Ações:</b> Enviar script, tag <b>responsible gambling</b> e supervisor.</p>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
 }
@@ -285,12 +343,7 @@ function jrAlto() {
 function jrCritico() {
   tela(`
     <h2>🔴 Risco Crítico</h2>
-    <p><b>Ações necessárias:</b></p>
-    <ul>
-      <li>Enviar script descrito no fluxo.</li>
-      <li>Colocar a tag <b>responsible gambling</b> no Zendesk.</li>
-      <li>Encaminhar imediatamente para o supervisor.</li>
-    </ul>
+    <p><b>Ações:</b> Enviar script, tag <b>responsible gambling</b> e supervisor.</p>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
 }
@@ -300,7 +353,7 @@ function inicioCashback() {
   tela(`
     <h2>Cálculo Individual Cashback</h2>
     <div style="text-align: left;">
-      <label>Porcentagem do Cashback (1 a 25%):</label>
+      <label>Porcentagem (1 a 25%):</label>
       <input id="porcentagem" type="number" min="1" max="25" value="5">
 
       <label>Total apostado (real_bet):</label>
@@ -323,9 +376,6 @@ function inicioCashback() {
 
       <label>Rakeback total recebido:</label>
       <input id="rake" type="number" step="0.01" value="0">
-
-      <label>Saques (withdrawals_amount):</label>
-      <input id="saque" type="number" step="0.01" value="0">
     </div>
     <button onclick="gerarResumo()">Pronto</button>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
@@ -334,7 +384,7 @@ function inicioCashback() {
 }
 
 function gerarResumo() {
-  let p = parseFloat(document.getElementById("porcentagem").value || 0);
+  const p = parseFloat(document.getElementById("porcentagem").value || 0);
   const bet = parseFloat(document.getElementById("real_bet").value || 0);
   const won = parseFloat(document.getElementById("real_won").value || 0);
   const lastCb = parseFloat(document.getElementById("last_week_cb").value || 0);
@@ -342,9 +392,8 @@ function gerarResumo() {
   const sell = parseFloat(document.getElementById("sell").value || 0);
   const trans = parseFloat(document.getElementById("trans").value || 0);
   const rake = parseFloat(document.getElementById("rake").value || 0);
-  const saque = parseFloat(document.getElementById("saque").value || 0);
 
-  const ganhosExtras = lastCb + spins + sell + trans + rake + saque;
+  const ganhosExtras = lastCb + spins + sell + trans + rake;
   const ganhosTotais = won + ganhosExtras;
   const perdas = bet - ganhosTotais;
   const valorFinalCb = perdas > 0 ? (perdas * (p / 100)) : 0;
@@ -377,11 +426,23 @@ Cashback (BRL ${perdas.toFixed(2)} - ${p}%) = BRL ${valorFinalCb.toFixed(2)}
 
 function executarCopia() {
   const texto = document.getElementById("preOutput").innerText;
-  navigator.clipboard.writeText(texto).then(() => {
-    const btn = document.getElementById("btnCopiar");
-    btn.innerText = "✅ Copiado!";
-    setTimeout(() => btn.innerText = "Copiar Mensagem", 2000);
-  });
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(texto).then(sucessoCopia);
+  } else {
+    const ta = document.createElement("textarea");
+    ta.value = texto;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    sucessoCopia();
+  }
+}
+
+function sucessoCopia() {
+  const b = document.getElementById("btnCopiar");
+  b.innerText = "✅ Copiado!";
+  setTimeout(() => b.innerText = "Copiar Mensagem", 2000);
 }
 
 menu();
