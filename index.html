@@ -4,47 +4,164 @@
   <meta charset="UTF-8">
   <title>Blaze – Suporte Unificado</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-    .box { width: 480px; border: 2px solid #e10600; border-radius: 10px; padding: 24px; box-shadow: 0 0 12px rgba(0,0,0,0.1); text-align: center; overflow-y: auto; max-height: 95vh; }
-    h2 { color: #e10600; margin-bottom: 16px; }
-    p { color: #333; line-height: 1.5; text-align: left; }
-    input { width: 100%; padding: 10px; margin-top: 4px; margin-bottom: 12px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; }
-    button { width: 100%; padding: 12px; margin: 5px 0; border: none; border-radius: 6px; background: #e10600; color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; }
-    button:hover { background: #b00500; }
-    .secondary { background: #555; }
-    .secondary:hover { background: #333; }
-    .link-list { text-align: left; max-height: 300px; overflow-y: auto; border: 1px solid #eee; padding: 10px; margin-bottom: 15px; border-radius: 6px; }
-    .link-item { display: block; padding: 8px; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #e10600; text-decoration: none; }
-    .link-item:hover { background: #fff5f5; }
-    pre { background: #f7f7f7; padding: 15px; white-space: pre-wrap; text-align: left; font-size: 13px; border: 1px solid #ddd; margin-top: 10px; }
-    .logo-area { margin-top: 20px; text-align: center; }
-    .logo-area img { width: 90px; opacity: 0.9; }
-    label { display: block; text-align: left; font-size: 13px; font-weight: bold; color: #444; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      width: 480px;
+      border: 2px solid #e10600;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      text-align: center;
+      overflow-y: auto;
+      max-height: 95vh;
+    }
+
+    h2 {
+      color: #e10600;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    a {
+      color: #e10600;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 6px;
+      background: #e10600;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #b00500;
+    }
+
+    .secondary {
+      background: #555;
+    }
+
+    .secondary:hover {
+      background: #333;
+    }
+
+    .link-list {
+      text-align: left;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+
+    .link-item {
+      display: block;
+      padding: 8px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+      color: #e10600;
+      text-decoration: none;
+    }
+
+    .link-item:hover {
+      background: #fff5f5;
+    }
+
+    pre {
+      background: #f7f7f7;
+      padding: 15px;
+      white-space: pre-wrap;
+      text-align: left;
+      font-size: 13px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+
+    .logo-area {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .logo-area img {
+      width: 90px;
+      opacity: 0.9;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-size: 13px;
+      font-weight: bold;
+      color: #444;
+    }
   </style>
 </head>
 <body>
+
 <div class="box" id="app"></div>
 
 <script>
 const app = document.getElementById("app");
-function tela(html) { app.innerHTML = html; }
 
+function tela(conteudo) {
+  app.innerHTML = conteudo;
+}
+
+/* ===================== MENU PRINCIPAL ===================== */
 function menu() {
   tela(`
     <h2>Fluxos de Atendimento</h2>
     <p>Selecione o tipo de atendimento:</p>
+
     <button onclick="inicioSaque()">💸 Problemas de Saque</button>
     <button onclick="inicioJR()">🎯 Jogo Responsável</button>
     <button onclick="inicioCashback()">🧮 Cálculo Individual Cashback</button>
     <button onclick="linksUteis()">🌐 Links úteis - Blog</button>
-    <div class="logo-area"><img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png"></div>
+    
+    <div class="logo-area">
+      <img src="https://logodownload.org/wp-content/uploads/2022/08/blaze-logo-0.png">
+    </div>
   `);
 }
 
+/* ===================== LINKS ÚTEIS - BLOG (FINAL) ===================== */
 function linksUteis() {
   const links = [
     { n: "Lei dos Grandes Números", l: "https://blaze.bet.br/pt/blog/article/lei-dos-grandes-numeros-nas-apostas" },
-    { n: "RNG (Gerador Aleatório)", l: "https://blaze.bet.br/pt/blog/article/rng" },
+    { n: "RNG (Gerador de Números Aleatórios)", l: "https://blaze.bet.br/pt/blog/article/rng" },
     { n: "Vício em Apostas", l: "https://blaze.bet.br/pt/blog/article/vicio-em-apostas" },
     { n: "Golpes e Fraudes em Cassinos", l: "https://blaze.bet.br/pt/blog/article/golpes-e-fraudes-nos-cassinos-online" },
     { n: "Guia de Análise de Riscos", l: "https://blaze.bet.br/pt/blog/article/guia-de-analise-de-riscos-nas-apostas-online" },
@@ -64,50 +181,229 @@ function linksUteis() {
     { n: "Mercados de Apostas Esportivas", l: "https://blaze.bet.br/pt/blog/article/mercados-de-apostas-esportivas" },
     { n: "Estratégia James Bond", l: "https://blaze.bet.br/pt/blog/article/estrategia-james-bond" },
     { n: "Cassino ao Vivo", l: "https://blaze.bet.br/pt/blog/article/cassino-ao-vivo" },
-    { n: "Método Stake Fixa", l: "https://blaze.bet.br/pt/blog/article/metodo-da-stake-fixa-na-gestao-de-banca" },
-    { n: "Martingale", l: "https://blaze.bet.br/pt/blog/article/martingale" },
-    { n: "Scalping", l: "https://blaze.bet.br/pt/blog/article/scalping" },
-    { n: "Dutching", l: "https://blaze.bet.br/pt/blog/article/dutching" },
-    { n: "Clean Sheet (Folha Limpa)", l: "https://blaze.bet.br/pt/blog/article/clean-sheet-no-futebol" },
-    { n: "Glossário eSports", l: "https://blaze.bet.br/pt/blog/article/glossario-dos-esports" },
-    { n: "Drifter nas Apostas", l: "https://blaze.bet.br/pt/blog/article/drifter-nas-apostas-esportivas" },
     { n: "Sistema Suíço", l: "https://blaze.bet.br/pt/blog/article/sistema-suico" },
     { n: "Tipster nas Apostas", l: "https://blaze.bet.br/pt/blog/article/tipster-nas-apostas-esportivas" }
   ];
-  let h = links.map(k => `<a href="${k.l}" target="_blank" class="link-item">🔗 ${k.n}</a>`).join('');
-  tela(`<h2>Links Úteis - Blog</h2><div class="link-list">${h}</div><button class="secondary" onclick="menu()">Voltar</button>`);
+
+  let htmlLinks = links.map(link => `<a href="${link.l}" target="_blank" class="link-item">🔗 ${link.n}</a>`).join('');
+
+  tela(`
+    <h2>Links Úteis - Blog</h2>
+    <div class="link-list">${htmlLinks}</div>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
 }
 
-function inicioSaque() { tela(`<h2>Problemas de Saque</h2><p>Recebeu?</p><button onclick="saqueRecebido()">Sim</button><button onclick="tempoSaque()">Não</button><button class="secondary" onclick="menu()">Voltar</button>`); }
-function saqueRecebido() { tela(`<h2>Ótimo!</h2><p>Prazo de 2 a 48h.</p><button class="secondary" onclick="menu()">Voltar</button>`); }
-function tempoSaque() { tela(`<h2>Tempo</h2><button onclick="statusSaque()">-48h</button><button onclick="saque48()">+48h</button><button class="secondary" onclick="menu()">Voltar</button>`); }
-function statusSaque() { tela(`<h2>Status</h2><button onclick="pending()">Pending</button><button onclick="complete()">Complete</button><button class="secondary" onclick="menu()">Voltar</button>`); }
-function pending() { tela(`<h2>Análise</h2><p>Use /prazo saque.</p><button class="secondary" onclick="menu()">Voltar</button>`); }
-function complete() { tela(`<h2>Concluído</h2><p>Verifique o banco.</p><button class="secondary" onclick="menu()">Voltar</button>`); }
-function saque48() { tela(`<h2>+48h</h2><p>Use formulário de transações ou contato.</p><button class="secondary" onclick="menu()">Voltar</button>`); }
+/* ===================== PROBLEMAS DE SAQUE ===================== */
+function inicioSaque() {
+  tela(`
+    <h2>Problemas de Saque</h2>
+    <p>O cliente recebeu o saque?</p>
+    <button onclick="saqueRecebido()">Sim</button>
+    <button onclick="tempoSaque()">Não</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
 
-function inicioJR() { tela(`<h2>Jogo Responsável</h2><p>Problemas?</p><button onclick="classificacaoJR()">Sim</button><button onclick="menu()">Não</button><p><a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view?usp=drive_link" target="_blank">PDF Fluxograma</a></p>`); }
-function classificacaoJR() { tela(`<h2>Risco</h2><button onclick="jrAlto()">Alto</button><button onclick="jrCritico()">Crítico</button><button class="secondary" onclick="menu()">Voltar</button>`); }
-function jrAlto() { tela(`<h2>Alto</h2><p>Script + Tag + Supervisor.</p><button class="secondary" onclick="menu()">Voltar</button>`); }
-function jrCritico() { tela(`<h2>Crítico</h2><p>Script + Tag + Supervisor.</p><button class="secondary" onclick="menu()">Voltar</button>`); }
+function saqueRecebido() {
+  tela(`
+    <h2>Ótimo!</h2>
+    <p>Os saques podem levar de <b>2 até 48 horas</b> para que nosso intermediário financeiro conclua o processamento.<br><br>Oriente sempre o cliente a aguardar o prazo padrão.</p>
+    <button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
 
+function tempoSaque() {
+  tela(`
+    <h2>Tempo do Saque</h2>
+    <p>Há quanto tempo o saque foi solicitado?</p>
+    <button onclick="statusSaque()">Menos de 48 horas</button>
+    <button onclick="saque48()">Mais de 48 horas</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
+
+function statusSaque() {
+  tela(`
+    <h2>Status do Saque</h2>
+    <p>Qual o status do saque no sistema?</p>
+    <button onclick="pending()">Pending Review / Waiting Input</button>
+    <button onclick="refunded()">Refunded</button>
+    <button onclick="complete()">Complete</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
+
+function pending() {
+  tela(`<h2>Saque em análise</h2><p>Oriente o cliente a aguardar o prazo padrão.<br><br>Envie o atalho <b>/prazo saque</b>.</p><button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+}
+
+function refunded() {
+  tela(`<h2>Saque reembolsado</h2><p>O saque foi reembolsado a pedido do usuário. Oriente o cliente a solicitar novamente e enviar o atalho <b>/prazo saque</b>.</p><button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+}
+
+function complete() {
+  tela(`<h2>Saque concluído</h2><p>O valor já foi enviado ao banco. Oriente a verificar o extrato ou utilizar <b>/contact form</b>.</p><button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+}
+
+function saque48() {
+  tela(`
+    <h2>Saque acima de 48 horas</h2>
+    <p>Se status for <b>Pending Review/Waiting Input</b>:</p>
+    <p><a href="https://support.blaze-help.com/hc/pt-br/articles/13980562814492-Base-Chat-Transaction-Issues-Form" target="_blank">Acessar formulário de transações</a></p>
+    <ul>
+      <li>Preencher planilha BCTIF</li>
+      <li><a href="https://docs.google.com/document/d/1nAdViRyXykIXYSqihMK8LlVlXgCsm09vH6qBhmdWN6E/edit" target="_blank">Procedimentos BCTIF</a></li>
+    </ul>
+    <p>Se status for <b>Complete</b> e cliente não localizou:</p>
+    <p><a href="https://docs.google.com/document/d/19_tKhSg62ZGcmtLplxcYjoGRfxt43z5FfuG476dNE50/edit" target="_blank">Acessar formulário de contato</a></p>
+    <button class="secondary" onclick="inicioSaque()">Reiniciar fluxo</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
+
+/* ===================== JOGO RESPONSÁVEL ===================== */
+function inicioJR() {
+  tela(`
+    <h2>Jogo Responsável</h2>
+    <p>O cliente mencionou algo relacionado a apostas e problemas pessoais?</p>
+    <button onclick="naoJR()">Não</button>
+    <button onclick="classificacaoJR()">Sim</button>
+    <p style="font-size: 14px; margin-top: 15px;">
+      📄 <b>Material de apoio</b><br>
+      <a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view?usp=drive_link" target="_blank">Acessar fluxograma em PDF</a>
+    </p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
+
+function naoJR() {
+  tela(`<h2>Orientação</h2><p>➜ Siga o atendimento normalmente.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`);
+}
+
+function classificacaoJR() {
+  tela(`
+    <h2>Classificação de Risco</h2>
+    <button onclick="jrBaixo()">🟢 Risco Baixo</button>
+    <button onclick="jrMedio()">🟡 Risco Médio</button>
+    <button onclick="jrAlto()">🟠 Risco Alto</button>
+    <button onclick="jrCritico()">🔴 Risco Crítico</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
+
+function jrBaixo() { tela(`<h2>🟢 Risco Baixo</h2><p>Realizar acolhimento e seguir o script.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`); }
+function jrMedio() { tela(`<h2>🟡 Risco Médio</h2><p>Sugerir ferramentas JR.</p><button class="secondary" onclick="menu()">Voltar ao menu</button>`); }
+
+function jrAlto() {
+  tela(`
+    <h2>🟠 Risco Alto</h2>
+    <p><b>Ações:</b> Enviar script, tag <b>responsible gambling</b> e supervisor.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
+
+function jrCritico() {
+  tela(`
+    <h2>🔴 Risco Crítico</h2>
+    <p><b>Ações:</b> Enviar script, tag <b>responsible gambling</b> e supervisor.</p>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+  `);
+}
+
+/* ===================== CASHBACK ===================== */
 function inicioCashback() {
-  tela(`<h2>Cashback</h2><div style="text-align:left;"><label>%:</label><input id="p" type="number" value="5"><label>Bet:</label><input id="b" type="number" value="0"><label>Won:</label><input id="w" type="number" value="0"><label>CB Ant:</label><input id="lc" type="number" value="0"><label>Spins:</label><input id="s" type="number" value="0"><label>Sell:</label><input id="sl" type="number" value="0"><label>Trans:</label><input id="t" type="number" value="0"><label>Rake:</label><input id="r" type="number" value="0"></div><button onclick="gerarResumo()">Pronto</button><button class="secondary" onclick="menu()">Voltar</button><div id="res"></div>`);
+  tela(`
+    <h2>Cálculo Individual Cashback</h2>
+    <div style="text-align: left;">
+      <label>Porcentagem (1 a 25%):</label>
+      <input id="porcentagem" type="number" min="1" max="25" value="5">
+      <label>Total apostado (real_bet):</label>
+      <input id="real_bet" type="number" step="0.01" value="0">
+      <label>Total ganho (real_won):</label>
+      <input id="real_won" type="number" step="0.01" value="0">
+      <label>Cashback semana anterior:</label>
+      <input id="last_week_cb" type="number" step="0.01" value="0">
+      <label>Ganhos Giros Grátis:</label>
+      <input id="spins" type="number" step="0.01" value="0">
+      <label>Ganhos Recompensas (sell_amount):</label>
+      <input id="sell" type="number" step="0.01" value="0">
+      <label>Bônus convertidos (transfer_amount):</label>
+      <input id="trans" type="number" step="0.01" value="0">
+      <label>Rakeback total recebido:</label>
+      <input id="rake" type="number" step="0.01" value="0">
+    </div>
+    <button onclick="gerarResumo()">Pronto</button>
+    <button class="secondary" onclick="menu()">Voltar ao menu</button>
+    <div id="resultado"></div>
+  `);
 }
 
 function gerarResumo() {
-  const p = parseFloat(document.getElementById("p").value || 0), b = parseFloat(document.getElementById("b").value || 0), w = parseFloat(document.getElementById("w").value || 0), lc = parseFloat(document.getElementById("lc").value || 0), s = parseFloat(document.getElementById("s").value || 0), sl = parseFloat(document.getElementById("sl").value || 0), t = parseFloat(document.getElementById("t").value || 0), r = parseFloat(document.getElementById("r").value || 0);
-  const ex = lc + s + sl + t + r, gt = w + ex, per = b - gt, fcb = per > 0 ? (per * (p/100)) : 0;
-  const txt = `Valores:\nTotal Apostado: BRL ${b.toFixed(2)}\nTotal Ganho: BRL ${w.toFixed(2)}\nCashback Anterior: BRL ${lc.toFixed(2)}\nGiros Grátis: BRL ${s.toFixed(2)}\nRecompensas: BRL ${sl.toFixed(2)}\nBônus Convertido: BRL ${t.toFixed(2)}\nRakeback: BRL ${r.toFixed(2)}\n\nGanhos Totais: BRL ${gt.toFixed(2)}\nPerdas: BRL ${per.toFixed(2)}\nCashback (${p}%): BRL ${fcb.toFixed(2)}\nLink: https://support.blaze-help.com/hc/pt-br/articles/360007716017-Como-funciona-o-cashback-reembolso`;
-  document.getElementById("res").innerHTML = `<pre id="out">${txt}</pre><button id="cp" onclick="copy()">Copiar</button>`;
+  const p = parseFloat(document.getElementById("porcentagem").value || 0);
+  const bet = parseFloat(document.getElementById("real_bet").value || 0);
+  const won = parseFloat(document.getElementById("real_won").value || 0);
+  const lastCb = parseFloat(document.getElementById("last_week_cb").value || 0);
+  const spins = parseFloat(document.getElementById("spins").value || 0);
+  const sell = parseFloat(document.getElementById("sell").value || 0);
+  const trans = parseFloat(document.getElementById("trans").value || 0);
+  const rake = parseFloat(document.getElementById("rake").value || 0);
+
+  const ganhosExtras = lastCb + spins + sell + trans + rake;
+  const ganhosTotais = won + ganhosExtras;
+  const perdas = bet - ganhosTotais;
+  const valorFinalCb = perdas > 0 ? (perdas * (p / 100)) : 0;
+
+  const textoFinal = `É importante que saiba que o cashback semanal não é um ganho sobre o total de perdas que teve durante a semana.
+
+Para recebê-lo, durante a semana precisa ter tido mais perdas do que ganhos, e é a partir dessa diferença que é tirada sua porcentagem de cashback.
+
+Vamos rever seus valores:
+Total apostado = BRL ${bet.toFixed(2)}
+Total ganho = BRL ${won.toFixed(2)}
+
+Cashback da semana passada = BRL ${lastCb.toFixed(2)}
+Ganhos com giros grátis = BRL ${spins.toFixed(2)}
+Ganhos de recompensas = BRL ${sell.toFixed(2)}
+Bônus convertidos em reais = BRL ${trans.toFixed(2)}
+Rakeback = BRL ${rake.toFixed(2)}
+
+Ganhos totais considerados = BRL ${won.toFixed(2)} + BRL ${ganhosExtras.toFixed(2)} = BRL ${ganhosTotais.toFixed(2)}
+Perdas = BRL ${bet.toFixed(2)} - BRL ${ganhosTotais.toFixed(2)} = BRL ${perdas.toFixed(2)}
+Cashback (BRL ${perdas.toFixed(2)} - ${p}%) = BRL ${valorFinalCb.toFixed(2)}
+
+( Mais informações sobre como funciona o calculo do cashback em https://support.blaze-help.com/hc/pt-br/articles/360007716017-Como-funciona-o-cashback-reembolso )`;
+
+  document.getElementById("resultado").innerHTML = `
+    <pre id="preOutput">${textoFinal}</pre>
+    <button id="btnCopiar" onclick="executarCopia()">Copiar Mensagem</button>
+  `;
 }
 
-function copy() {
-  const t = document.getElementById("out").innerText;
-  navigator.clipboard.writeText(t).then(() => { document.getElementById("cp").innerText = "✅ Copiado!"; setTimeout(() => menu(), 2000); });
+function executarCopia() {
+  const texto = document.getElementById("preOutput").innerText;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(texto).then(sucessoCopia);
+  } else {
+    const ta = document.createElement("textarea");
+    ta.value = texto;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    sucessoCopia();
+  }
+}
+
+function sucessoCopia() {
+  const b = document.getElementById("btnCopiar");
+  b.innerText = "✅ Copiado!";
+  setTimeout(() => b.innerText = "Copiar Mensagem", 2000);
 }
 
 menu();
 </script>
+
 </body>
 </html>
