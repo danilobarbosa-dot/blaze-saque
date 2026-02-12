@@ -157,53 +157,30 @@ function menu() {
   `);
 }
 
-/* ===================== LINKS ÚTEIS - BLOG (ATUALIZADO) ===================== */
+/* ===================== LINKS ÚTEIS - BLOG (FILTRADO) ===================== */
 function linksUteis() {
   const links = [
     { n: "Lei dos Grandes Números", l: "https://blaze.bet.br/pt/blog/article/lei-dos-grandes-numeros-nas-apostas" },
     { n: "RNG (Gerador de Números Aleatórios)", l: "https://blaze.bet.br/pt/blog/article/rng" },
-    { n: "Jogos de Aposta ou Azar?", l: "https://blaze.bet.br/pt/blog/article/jogos-de-aposta-ou-jogos-de-azar" },
     { n: "Vício em Apostas", l: "https://blaze.bet.br/pt/blog/article/vicio-em-apostas" },
     { n: "Golpes e Fraudes em Cassinos", l: "https://blaze.bet.br/pt/blog/article/golpes-e-fraudes-nos-cassinos-online" },
-    { n: "Gestão de Banca Responsável", l: "https://blaze.bet.br/pt/blog/article/gestao-de-banca-responsavel-em-apostas-online" },
-    { n: "Ferramentas de JR da Blaze", l: "https://blaze.bet.br/pt/blog/article/ferramentas-de-jogo-responsavel-da-blaze" },
-    { n: "Apostas Sistema", l: "https://blaze.bet.br/pt/blog/article/apostas-sistema" },
     { n: "Guia de Análise de Riscos", l: "https://blaze.bet.br/pt/blog/article/guia-de-analise-de-riscos-nas-apostas-online" },
-    { n: "ROI em Apostas", l: "https://blaze.bet.br/pt/blog/article/roi-em-apostas" },
-    { n: "Apostas Futuras", l: "https://blaze.bet.br/pt/blog/article/apostas-futuras" },
-    { n: "Aposta Múltipla", l: "https://blaze.bet.br/pt/blog/article/aposta-multipla" },
     { n: "xG (Expected Goals)", l: "https://blaze.bet.br/pt/blog/article/xg-expected-goals" },
-    { n: "Dupla Chance / Placar Exato", l: "https://blaze.bet.br/pt/blog/article/dupla-chance-1x2-ou-placar-exato" },
     { n: "Provably Fair", l: "https://blaze.bet.br/pt/blog/article/provably-fair" },
     { n: "Como sacar na Blaze", l: "https://blaze.bet.br/pt/blog/article/como-sacar-na-blaze" },
     { n: "Autoexclusão", l: "https://blaze.bet.br/pt/blog/article/autoexclusao-nas-plataformas-de-apostas-online" },
     { n: "Verificação de Identidade (KYC)", l: "https://blaze.bet.br/pt/blog/article/verificacao-de-identidade-nas-plataformas-de-apostas" },
-    { n: "Aposta Handicap", l: "https://blaze.bet.br/pt/blog/article/aposta-handicap" },
     { n: "Rollover nas Apostas", l: "https://blaze.bet.br/pt/blog/article/rollover-nas-apostas" },
-    { n: "Surebet", l: "https://blaze.bet.br/pt/blog/article/surebet" },
-    { n: "Void Bet (Aposta Anulada)", l: "https://blaze.bet.br/pt/blog/article/void-bet" },
-    { n: "Handicap Asiático", l: "https://blaze.bet.br/pt/blog/article/handicap-asiatico-nas-apostas" },
-    { n: "Draw No Bet (DNB)", l: "https://blaze.bet.br/pt/blog/article/draw-no-bet" },
     { n: "Over e Under", l: "https://blaze.bet.br/pt/blog/article/over-e-under" },
     { n: "Handicap Europeu", l: "https://blaze.bet.br/pt/blog/article/handicap-europeu" },
     { n: "Cashback da Blaze", l: "https://blaze.bet.br/pt/blog/article/cashback-da-blaze" },
-    { n: "Sic Bo", l: "https://blaze.bet.br/pt/blog/article/sic-bo" },
-    { n: "Game Shows", l: "https://blaze.bet.br/pt/blog/article/game-shows" },
-    { n: "Como escolher um Caça-níquel", l: "https://blaze.bet.br/pt/blog/article/como-escolher-um-caca-niquel" },
     { n: "Símbolos Scatter", l: "https://blaze.bet.br/pt/blog/article/simbolos-scatter" },
-    { n: "Roleta Brasileira", l: "https://blaze.bet.br/pt/blog/article/roleta-brasileira" },
-    { n: "Slots Temáticos", l: "https://blaze.bet.br/pt/blog/article/caca-niqueis-tematicos" },
-    { n: "Compra de Bônus (Slots)", l: "https://blaze.bet.br/pt/blog/article/caca-niqueis-com-compra-de-bonus" },
-    { n: "Crash Games", l: "https://blaze.bet.br/pt/blog/article/crash-games" },
-    { n: "Vitórias em Cascata", l: "https://blaze.bet.br/pt/blog/article/vitorias-em-cascata-nos-slots" },
     { n: "Maneiras de vencer nos Slots", l: "https://blaze.bet.br/pt/blog/article/maneiras-de-vencer-nos-slots" },
-    { n: "Compra de Recurso", l: "https://blaze.bet.br/pt/blog/article/o-que-e-a-compra-de-recurso-nos-cassinos-online" },
     { n: "Bônus de Cassino Online", l: "https://blaze.bet.br/pt/blog/article/bonus-de-cassino-online" },
     { n: "Enciclopédia de Apostas", l: "https://blaze.bet.br/pt/blog/article/enciclopedia-de-apostas-esportivas" },
     { n: "Mercados de Apostas Esportivas", l: "https://blaze.bet.br/pt/blog/article/mercados-de-apostas-esportivas" },
     { n: "Estratégia James Bond", l: "https://blaze.bet.br/pt/blog/article/estrategia-james-bond" },
     { n: "Cassino ao Vivo", l: "https://blaze.bet.br/pt/blog/article/cassino-ao-vivo" },
-    { n: "Torneios de Cassino", l: "https://blaze.bet.br/pt/blog/article/torneios-de-cassino-online" },
     { n: "Método Stake Fixa", l: "https://blaze.bet.br/pt/blog/article/metodo-da-stake-fixa-na-gestao-de-banca" },
     { n: "Martingale", l: "https://blaze.bet.br/pt/blog/article/martingale" },
     { n: "Scalping", l: "https://blaze.bet.br/pt/blog/article/scalping" },
@@ -212,8 +189,7 @@ function linksUteis() {
     { n: "Glossário eSports", l: "https://blaze.bet.br/pt/blog/article/glossario-dos-esports" },
     { n: "Drifter nas Apostas", l: "https://blaze.bet.br/pt/blog/article/drifter-nas-apostas-esportivas" },
     { n: "Sistema Suíço", l: "https://blaze.bet.br/pt/blog/article/sistema-suico" },
-    { n: "Tipster nas Apostas", l: "https://blaze.bet.br/pt/blog/article/tipster-nas-apostas-esportivas" },
-    { n: "Scratching nas Apostas", l: "https://blaze.bet.br/pt/blog/article/scratching-nas-apostas-esportivas" }
+    { n: "Tipster nas Apostas", l: "https://blaze.bet.br/pt/blog/article/tipster-nas-apostas-esportivas" }
   ];
 
   let htmlLinks = links.map(link => `<a href="${link.l}" target="_blank" class="link-item">🔗 ${link.n}</a>`).join('');
@@ -282,14 +258,14 @@ function complete() {
 function saque48() {
   tela(`
     <h2>Saque acima de 48 horas</h2>
-    <p>Verifique o <b>status da transação</b>:</p>
+    <p>Quando um saque ultrapassa <b>48 horas</b>, é necessário verificar o <b>status da transação</b>:</p>
     <p>Se <b>Pending Review/Waiting Input</b>:</p>
     <p><a href="https://support.blaze-help.com/hc/pt-br/articles/13980562814492-Base-Chat-Transaction-Issues-Form" target="_blank">Acessar formulário de transações</a></p>
     <ul>
       <li>Preencher planilha BCTIF</li>
       <li><a href="https://docs.google.com/document/d/1nAdViRyXykIXYSqihMK8LlVlXgCsm09vH6qBhmdWN6E/edit" target="_blank">Procedimentos BCTIF</a></li>
     </ul>
-    <p>Se <b>Complete</b> e cliente não localizou:</p>
+    <p>Se status for <b>Complete</b> e cliente não localizou:</p>
     <p><a href="https://docs.google.com/document/d/19_tKhSg62ZGcmtLplxcYjoGRfxt43z5FfuG476dNE50/edit" target="_blank">Acessar formulário de contato</a></p>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
@@ -300,16 +276,9 @@ function inicioJR() {
   tela(`
     <h2>Jogo Responsável</h2>
     <p>O cliente mencionou algo relacionado a apostas e problemas pessoais?</p>
-
     <button onclick="naoJR()">Não</button>
     <button onclick="classificacaoJR()">Sim</button>
-
-    <p class="info">
-      📄 <b>Material de apoio</b><br>
-      Siga com o fluxograma aberto durante o atendimento.<br>
-      <a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view?usp=drive_link" target="_blank">Acessar fluxograma em PDF</a>
-    </p>
-
+    <p class="info">📄 <b>Material de apoio</b><br><a href="https://drive.google.com/file/d/1y0IAo5QAiXIH29zt8cofJHWLLo5uD_V3/view?usp=drive_link" target="_blank">Acessar fluxograma em PDF</a></p>
     <button class="secondary" onclick="menu()">Voltar ao menu</button>
   `);
 }
@@ -355,25 +324,18 @@ function inicioCashback() {
     <div style="text-align: left;">
       <label>Porcentagem (1 a 25%):</label>
       <input id="porcentagem" type="number" min="1" max="25" value="5">
-
       <label>Total apostado (real_bet):</label>
       <input id="real_bet" type="number" step="0.01" value="0">
-
       <label>Total ganho (real_won):</label>
       <input id="real_won" type="number" step="0.01" value="0">
-
       <label>Cashback semana anterior:</label>
       <input id="last_week_cb" type="number" step="0.01" value="0">
-
       <label>Ganhos Giros Grátis:</label>
       <input id="spins" type="number" step="0.01" value="0">
-
       <label>Ganhos Recompensas (sell_amount):</label>
       <input id="sell" type="number" step="0.01" value="0">
-
       <label>Bônus convertidos (transfer_amount):</label>
       <input id="trans" type="number" step="0.01" value="0">
-
       <label>Rakeback total recebido:</label>
       <input id="rake" type="number" step="0.01" value="0">
     </div>
